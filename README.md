@@ -15,7 +15,11 @@ It centralizes analysis, proposals, decisions and change tracking across the nod
 
 ## Service documentation
 
-The [public Koinos architecture documentation](https://github.com/koinos/koinos-docs/tree/master/docs/architecture) describes the microservices and their internal communication. This project's [inventory](docs/inventory/2026-09-30-inventory.md) records the specific versions reviewed.
+The [maintained Koinos documentation repository](https://github.com/pgarciagon/koinos-docs) is the public home for architecture, microservice references and node operator documentation. It starts with 11 service references, internal messaging documentation and the consolidated project's broader chapters. Its [contribution guide](https://github.com/pgarciagon/koinos-docs/blob/main/CONTRIBUTING.md), source baselines and service template define how to review and expand the references.
+
+This project's [inventory](docs/inventory/2026-09-30-inventory.md) records the specific versions reviewed for producer-node improvements. The documentation repository has its own recorded source baseline; compare revisions before reusing claims. The [repository decision](docs/decisions/2026-09-30-documentation-repository.md) records scope and validation.
+
+The [historical upstream documentation](https://github.com/koinos/koinos-docs) remains a reference. Its README marks the repository deprecated and redirects contributions to `koinos/koinos/docs`; that path returned HTTP 404 when checked on September 30, 2026.
 
 The local environment keeps additional technical references and a comparison with the private Knodel project in `LOCAL_REFERENCES.md` and `docs/comparisons/`. These files are excluded from the public repository.
 

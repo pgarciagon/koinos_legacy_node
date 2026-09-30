@@ -15,6 +15,7 @@ This project coordinates improvements and updates to the base software for runni
 
 ## Continuation point
 
+- Maintain shared architectural and operator documentation in https://github.com/pgarciagon/koinos-docs; the local checkout is recorded in ignored `LOCAL_REFERENCES.md`. Keep this coordinator focused on inventory, proposals, decisions and change references. Consult the documentation repository's own instructions before editing it and distinguish its source baseline from this inventory's baseline.
 - Consult the public references in the README. If present, `LOCAL_REFERENCES.md` contains local environment references excluded from Git, including additional Knodel documentation.
 - Keep local files and analysis that depends on private project information out of publication. When reusing historical documentation, verify options and data against the target version.
 - Initial inventory: `docs/inventory/2026-09-30-inventory.md`; evidence in `docs/inventory/evidence/`.
