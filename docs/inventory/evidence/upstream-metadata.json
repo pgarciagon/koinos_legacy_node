@@ -1,0 +1,1443 @@
+{
+  "collected_at_utc": "2026-09-30T05:47:13.322635+00:00",
+  "scope": "Public upstream source; no running-node inspection",
+  "repositories": [
+    {
+      "repository": "koinos/koinos",
+      "url": "https://github.com/koinos/koinos",
+      "default_branch": "master",
+      "head": "b05b8337d0a8d09748f9c2d1faef810ee2f5de28",
+      "head_date": "2026-09-18T12:01:53+02:00",
+      "archived": false,
+      "pushed_at": "2026-09-18T10:01:53Z",
+      "selected_tag": null,
+      "selected_commit": null,
+      "releases": [
+        {
+          "tag_name": "v2.2.1",
+          "published_at": "2025-03-12T16:08:36Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.2.1"
+        },
+        {
+          "tag_name": "v2.2.0",
+          "published_at": "2025-02-05T16:46:33Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.2.0"
+        },
+        {
+          "tag_name": "v2.1.2",
+          "published_at": "2024-09-17T15:44:27Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.1.2"
+        },
+        {
+          "tag_name": "v2.1.1",
+          "published_at": "2024-06-07T17:54:54Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.1.1"
+        },
+        {
+          "tag_name": "v2.1.0",
+          "published_at": "2024-05-15T20:38:09Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.1.0"
+        },
+        {
+          "tag_name": "v2.0.3",
+          "published_at": "2024-04-29T18:03:24Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.0.3"
+        },
+        {
+          "tag_name": "v2.0.2",
+          "published_at": "2024-04-23T18:00:21Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.0.2"
+        },
+        {
+          "tag_name": "v2.0.1",
+          "published_at": "2023-08-29T19:14:38Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.0.1"
+        },
+        {
+          "tag_name": "v2.0.0",
+          "published_at": "2023-02-14T00:32:15Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v2.0.0"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2022-11-29T21:04:37Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos/releases/tag/v1.1.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v2.2.1",
+          "commit": "7c861cd13681f6fce735e345cc6f563cc6047574"
+        },
+        {
+          "name": "v2.2.0",
+          "commit": "d4ab01d7d57ba43376ef1d6e6c46fa3a80497c59"
+        },
+        {
+          "name": "v2.1.2",
+          "commit": "14a87feb7884beabe11079212337404c0939dd03"
+        },
+        {
+          "name": "v2.1.1",
+          "commit": "fdee2f1657f89cd49eee8a5ea0accc7bffc76729"
+        },
+        {
+          "name": "v2.1.0",
+          "commit": "a0aead5bee981dd858d1850fc37db946a606a41d"
+        },
+        {
+          "name": "v2.0.3",
+          "commit": "76ee8893d6802f30d53402e9d5a58a681df19f59"
+        },
+        {
+          "name": "v2.0.2",
+          "commit": "d3bcefd487a1587713d992ef9699f947b9b78ca8"
+        },
+        {
+          "name": "v2.0.1",
+          "commit": "e4768a23a941d49334cc61bc4df73106a723fefe"
+        },
+        {
+          "name": "v2.0.0",
+          "commit": "3918d95854dc60686cacb929ecb877d089602cac"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "4d70058e3cfa9f48eb3bd68553f7f5bf57d1869c"
+        },
+        {
+          "name": "v1.0.1",
+          "commit": "c185a3f586d2cd7e3c985edd0a8a630620144519"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "a032ca018e7c6157bdac985b60736d1d3fd9e560"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "2007f30fcbaeaa52ef227d795efd8893dbc30400"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "65df01764dcb3707e85334f5bd93c4bac13c898d"
+        },
+        {
+          "name": "v0.3.1",
+          "commit": "7550136cebff2de4ab61375e063047dea1a76dea"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 109,
+          "title": "Document current public Koinos testnet endpoint and faucet",
+          "url": "https://github.com/koinos/koinos/pull/109",
+          "is_pr": true
+        },
+        {
+          "number": 82,
+          "title": "[FEATURE]: Data Store",
+          "url": "https://github.com/koinos/koinos/issues/82",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-account-history",
+      "url": "https://github.com/koinos/koinos-account-history",
+      "default_branch": "master",
+      "head": "636423ea140684d0b5ab523b35039a88a8206c02",
+      "head_date": "2025-03-17T11:08:22-06:00",
+      "archived": false,
+      "pushed_at": "2025-03-17T17:08:23Z",
+      "selected_tag": "v1.1.0",
+      "selected_commit": "1d592c40ddd06c022eab3153266bd428752c6ded",
+      "releases": [
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-03-14T23:25:43Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-account-history/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.1",
+          "published_at": "2023-02-13T18:19:33Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-account-history/releases/tag/v1.0.1"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-29T20:59:00Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-account-history/releases/tag/v1.0.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.1.0",
+          "commit": "1d592c40ddd06c022eab3153266bd428752c6ded"
+        },
+        {
+          "name": "v1.0.1",
+          "commit": "2b98493dd5bde0d756ef691444d342ba94933f81"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "8f158d8038595a83be3d9d7798a6d09f4257a142"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 19,
+          "title": "[BUG]: Unclean shutdown during sync",
+          "url": "https://github.com/koinos/koinos-account-history/issues/19",
+          "is_pr": false
+        },
+        {
+          "number": 14,
+          "title": "[BUG]: Discarding of Head",
+          "url": "https://github.com/koinos/koinos-account-history/issues/14",
+          "is_pr": false
+        },
+        {
+          "number": 11,
+          "title": "[BUG]: Incorrect log message in block irreversibility handler",
+          "url": "https://github.com/koinos/koinos-account-history/issues/11",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-block-producer",
+      "url": "https://github.com/koinos/koinos-block-producer",
+      "default_branch": "master",
+      "head": "8896d7aabbe9e0d154a5f7860920e95d17fd8cb4",
+      "head_date": "2026-03-21T08:32:23+01:00",
+      "archived": false,
+      "pushed_at": "2026-08-30T03:51:32Z",
+      "selected_tag": "v1.3.1",
+      "selected_commit": "8896d7aabbe9e0d154a5f7860920e95d17fd8cb4",
+      "releases": [
+        {
+          "tag_name": "v1.3.0",
+          "published_at": "2025-02-05T00:06:13Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.3.0"
+        },
+        {
+          "tag_name": "v1.2.1",
+          "published_at": "2024-04-09T19:18:48Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.2.1"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "published_at": "2024-03-14T23:23:53Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.2.0"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2023-05-08T23:39:46Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.2",
+          "published_at": "2023-02-13T18:20:52Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.0.2"
+        },
+        {
+          "tag_name": "v1.0.1",
+          "published_at": "2022-11-29T20:12:49Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.0.1"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:38:56Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "published_at": "2022-10-14T18:14:58Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v0.4.2"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-09-21T00:19:01Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T19:34:39Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-producer/releases/tag/v0.4.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.3.1",
+          "commit": "8896d7aabbe9e0d154a5f7860920e95d17fd8cb4"
+        },
+        {
+          "name": "v1.3.0",
+          "commit": "9306c41f2e9169671c11dcdeb6ae4ebc564ffa42"
+        },
+        {
+          "name": "v1.2.1",
+          "commit": "f112154422793f5fae4a4e38c841d50883314b00"
+        },
+        {
+          "name": "v1.2.0",
+          "commit": "f46b9e223255e006217a293d2cbb8e0f34fdf477"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "d38de1aa7704806fc5da720d4702106063873ec5"
+        },
+        {
+          "name": "v1.0.2",
+          "commit": "981326a12a04788eaa145aa14cc6674992b0ed73"
+        },
+        {
+          "name": "v1.0.1",
+          "commit": "3f7c0f5f0fa1040aa86af7d36a4e550e97656134"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "5ad6552e0a4bdb61f046c79f8d7e92f25e146fa4"
+        },
+        {
+          "name": "v0.4.2",
+          "commit": "ec26e27bdfee26527776a6744b2f9b7f1dbd793f"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "9250d84f392b2830a7f09af5826d547d4785760f"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "624eae5fec6c5074f19ec9da181c5ae4a66408de"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "2d44b0ab4a6ba033f2935ca611a70e4dfcdc5ce5"
+        },
+        {
+          "name": "v0.2.0",
+          "commit": "774ed3ca3358e974a49571892f370806b4635f56"
+        },
+        {
+          "name": "v0.1.0",
+          "commit": "a3df2cbab0ca7f327750b8d1906106514a1af893"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 156,
+          "title": "Fix reported block producer version",
+          "url": "https://github.com/koinos/koinos-block-producer/pull/156",
+          "is_pr": true
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-block-store",
+      "url": "https://github.com/koinos/koinos-block-store",
+      "default_branch": "master",
+      "head": "f195441ff2eaa757645a7997e96957c91bf930ac",
+      "head_date": "2024-10-07T16:54:55+02:00",
+      "archived": false,
+      "pushed_at": "2025-03-05T16:26:31Z",
+      "selected_tag": "v1.1.0",
+      "selected_commit": "2bb94558df61c71eb241002635444cdddce0843c",
+      "releases": [
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-04-09T19:17:57Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:40:10Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "published_at": "2022-10-12T21:44:36Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v0.4.2"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-09-16T21:03:30Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T20:20:38Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v0.4.0"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "published_at": "2022-03-08T17:34:38Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v0.3.0"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "published_at": "2021-11-02T18:56:14Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v0.2.0"
+        },
+        {
+          "tag_name": "v0.1.0",
+          "published_at": "2021-06-30T17:26:00Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-block-store/releases/tag/v0.1.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.1.0",
+          "commit": "2bb94558df61c71eb241002635444cdddce0843c"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "59c43c7d77614da4c0957f56a672a5bc9c150c10"
+        },
+        {
+          "name": "v0.4.2",
+          "commit": "71d6837152797e5e23f3e38e7732945fc39cb9a5"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "71d6837152797e5e23f3e38e7732945fc39cb9a5"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "ebdad8b91458cbccfd324b32beb0e31cd1b04588"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "6ea26130b021bbf133d9e23b549e9501828fc1f0"
+        },
+        {
+          "name": "v0.2.0",
+          "commit": "d7213533e6a8fed36cb923318f12255e1be2a4e3"
+        },
+        {
+          "name": "v0.1.0",
+          "commit": "d1c1a86a3a073a373d2c127126fc35b46da4857b"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 138,
+          "title": "[BUG]: SEGV",
+          "url": "https://github.com/koinos/koinos-block-store/issues/138",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-chain",
+      "url": "https://github.com/koinos/koinos-chain",
+      "default_branch": "master",
+      "head": "0ae99eced8b585c4145424e9c2a28f667796cc66",
+      "head_date": "2026-07-09T15:06:26Z",
+      "archived": false,
+      "pushed_at": "2026-07-09T15:06:46Z",
+      "selected_tag": "v1.5.2",
+      "selected_commit": "0ae99eced8b585c4145424e9c2a28f667796cc66",
+      "releases": [
+        {
+          "tag_name": "v1.5.2",
+          "published_at": "2026-07-09T15:07:59Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.5.2"
+        },
+        {
+          "tag_name": "v1.4.1",
+          "published_at": "2025-03-11T18:10:21Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.4.1"
+        },
+        {
+          "tag_name": "v1.4.0",
+          "published_at": "2025-02-05T00:05:22Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.4.0"
+        },
+        {
+          "tag_name": "v1.3.2",
+          "published_at": "2024-09-10T12:32:22Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.3.2"
+        },
+        {
+          "tag_name": "v1.3.1",
+          "published_at": "2024-04-23T16:42:55Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.3.1"
+        },
+        {
+          "tag_name": "v1.3.0",
+          "published_at": "2024-04-09T19:19:18Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.3.0"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "published_at": "2024-03-14T23:23:09Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.2.0"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2023-07-24T18:15:42Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.3",
+          "published_at": "2023-02-13T18:20:19Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.0.3"
+        },
+        {
+          "tag_name": "v1.0.2",
+          "published_at": "2022-11-29T20:11:20Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-chain/releases/tag/v1.0.2"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.5.2",
+          "commit": "0ae99eced8b585c4145424e9c2a28f667796cc66"
+        },
+        {
+          "name": "v1.5.1",
+          "commit": "5a00d1339cc7917703935b27ddf811f2a5d7cecb"
+        },
+        {
+          "name": "v1.5.0",
+          "commit": "f7b7ab919dbd08e51c33cb24d11e95f95b80bb27"
+        },
+        {
+          "name": "v1.4.1",
+          "commit": "8fa4ee6295adaac834147b0c8db5de34b90a8c5f"
+        },
+        {
+          "name": "v1.4.0",
+          "commit": "3edc281f712bed0881ccc20b7aaef03778137d20"
+        },
+        {
+          "name": "v1.3.2",
+          "commit": "acaec4a200eb2c503436c8dbde5d18e8c494b546"
+        },
+        {
+          "name": "v1.3.1",
+          "commit": "b9a9f5a0b31782b6d5679ba55680b24ebe9275c8"
+        },
+        {
+          "name": "v1.3.0",
+          "commit": "336744ca9258a3db183b2e21dd274b501719b2c7"
+        },
+        {
+          "name": "v1.2.0",
+          "commit": "05a18252d77f6831286d11e9ef9bcc897daeccc3"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "e3786780f931392a786ca1c2579683a094a5d36c"
+        },
+        {
+          "name": "v1.0.3",
+          "commit": "01417fb42ea217569091f0662cf6f5830e17399a"
+        },
+        {
+          "name": "v1.0.2",
+          "commit": "b3bc4d9333f0633579e12be922632a2b5e02b76e"
+        },
+        {
+          "name": "v1.0.1",
+          "commit": "53d13a1407b5b757e3c3f31c03bec7c6e6d13c53"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "39128959ea714e17a5d3a6aae3348c9a19c9d28d"
+        },
+        {
+          "name": "v0.4.3",
+          "commit": "2f8c0c08f50f59f84041afd73689c2a6ba5c4070"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 862,
+          "title": "Fix double-free of cached WASM module in fizzy vm_manager",
+          "url": "https://github.com/koinos/koinos-chain/pull/862",
+          "is_pr": true
+        },
+        {
+          "number": 859,
+          "title": "[FEATURE]: option to apply blocks in backward mode",
+          "url": "https://github.com/koinos/koinos-chain/issues/859",
+          "is_pr": false
+        },
+        {
+          "number": 843,
+          "title": "[BUG]: strange behaviour with rc_limit",
+          "url": "https://github.com/koinos/koinos-chain/issues/843",
+          "is_pr": false
+        },
+        {
+          "number": 819,
+          "title": "[FEATURE]: provide `call_args` in `call_data`",
+          "url": "https://github.com/koinos/koinos-chain/issues/819",
+          "is_pr": false
+        },
+        {
+          "number": 810,
+          "title": "[FEATURE]: include `system_rc_cost` in the block receipt",
+          "url": "https://github.com/koinos/koinos-chain/issues/810",
+          "is_pr": false
+        },
+        {
+          "number": 676,
+          "title": "[FEATURE]: Log Source",
+          "url": "https://github.com/koinos/koinos-chain/issues/676",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-contract-meta-store",
+      "url": "https://github.com/koinos/koinos-contract-meta-store",
+      "default_branch": "master",
+      "head": "75b7a0d128ce39a59b2195ae57db83c2af4b5a32",
+      "head_date": "2024-10-07T16:58:02+02:00",
+      "archived": false,
+      "pushed_at": "2024-10-07T14:58:05Z",
+      "selected_tag": "v1.1.0",
+      "selected_commit": "64e803e1db1a9bb2946ae379ddad0e5611442ec5",
+      "releases": [
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-04-09T19:18:23Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:41:02Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.3",
+          "published_at": "2022-10-14T18:17:31Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v0.4.3"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "published_at": "2022-10-12T22:25:54Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v0.4.2"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-09-16T21:07:10Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T20:21:36Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v0.4.0"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "published_at": "2022-03-08T17:36:52Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-contract-meta-store/releases/tag/v0.3.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.1.0",
+          "commit": "64e803e1db1a9bb2946ae379ddad0e5611442ec5"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "5bc52076f9e02df45c91e32099f9d62ffe79ac3b"
+        },
+        {
+          "name": "v0.4.3",
+          "commit": "f8749c31da128c654eb9b8072ff6ded53d258a87"
+        },
+        {
+          "name": "v0.4.2",
+          "commit": "7319269ff583b47a94ae48ba6b6f2c958a947acd"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "563798f37a962ca43b9c550f10ea5db8f54a323f"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "d536240e4b2d74736603a666295a8b7105534758"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "2236bf4400f321c8e4afdcd664763b0a64135a3e"
+        }
+      ],
+      "open_items": []
+    },
+    {
+      "repository": "koinos/koinos-grpc",
+      "url": "https://github.com/koinos/koinos-grpc",
+      "default_branch": "master",
+      "head": "a1df93bd336760f7c8aa76c5e4c45eacb3b6888e",
+      "head_date": "2025-03-13T16:03:14-06:00",
+      "archived": false,
+      "pushed_at": "2025-03-13T22:03:17Z",
+      "selected_tag": "v1.1.1",
+      "selected_commit": "3a94c34fa002552ef586cd1af9bfd34d175430d3",
+      "releases": [
+        {
+          "tag_name": "v1.1.1",
+          "published_at": "2024-04-09T19:20:09Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-grpc/releases/tag/v1.1.1"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-03-14T23:24:22Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-grpc/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2023-08-02T18:40:47Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-grpc/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.0.1",
+          "published_at": "2023-02-13T18:20:16Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-grpc/releases/tag/v0.0.1"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.1.1",
+          "commit": "3a94c34fa002552ef586cd1af9bfd34d175430d3"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "e4b2914e18bdc146bd5f603537b54539d9acd9e4"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "23f28b7a91e770cde1c05e0da7e95acb12f18d62"
+        },
+        {
+          "name": "v0.0.1",
+          "commit": "6c958cb4afcd9959aaed5399a8bb03ee67938107"
+        }
+      ],
+      "open_items": []
+    },
+    {
+      "repository": "koinos/koinos-jsonrpc",
+      "url": "https://github.com/koinos/koinos-jsonrpc",
+      "default_branch": "master",
+      "head": "2c9433c67f2f60c920525a6c4bd3e15b0b51d94a",
+      "head_date": "2026-04-09T08:13:45Z",
+      "archived": false,
+      "pushed_at": "2026-04-09T08:14:08Z",
+      "selected_tag": "v1.2.0",
+      "selected_commit": "2c9433c67f2f60c920525a6c4bd3e15b0b51d94a",
+      "releases": [
+        {
+          "tag_name": "v1.2.0",
+          "published_at": "2026-04-09T08:16:04Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v1.2.0"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-04-09T20:53:52Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:42:35Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "published_at": "2022-10-12T22:27:05Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v0.4.2"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-09-16T21:06:22Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T20:22:07Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v0.4.0"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "published_at": "2022-03-08T17:48:30Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v0.3.0"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "published_at": "2021-11-02T18:57:37Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v0.2.0"
+        },
+        {
+          "tag_name": "v0.1.0",
+          "published_at": "2021-06-30T17:15:28Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-jsonrpc/releases/tag/v0.1.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.2.0",
+          "commit": "2c9433c67f2f60c920525a6c4bd3e15b0b51d94a"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "803f0f3a3f8c7342f770f9d5c2aed9c7e00d7b1c"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "b5b0754d00ee539aedd7d13683a7c88cd59138ba"
+        },
+        {
+          "name": "v0.4.2",
+          "commit": "81df8b01e3fd002c58dbbb37f45aeb76522ff565"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "55d99e4cd534db4d1193b5d9abbadebc7391db3e"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "065e625f3c201045e40b151ccc13d4bef77ca5e0"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "e83392dacbb0bdb8887128f6a90b973ac9d16261"
+        },
+        {
+          "name": "v0.2.0",
+          "commit": "1057373f98dc6862736f44d94ef44cf0f8418133"
+        },
+        {
+          "name": "v0.1.0",
+          "commit": "9e784ccb056cad973f46cd70e36a054d2bde9d31"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 61,
+          "title": "[BUG]: Duplicate endpoint option",
+          "url": "https://github.com/koinos/koinos-jsonrpc/issues/61",
+          "is_pr": false
+        },
+        {
+          "number": 37,
+          "title": "Embedded JSON in JSONRPC Responses",
+          "url": "https://github.com/koinos/koinos-jsonrpc/issues/37",
+          "is_pr": false
+        },
+        {
+          "number": 33,
+          "title": "human readable operations",
+          "url": "https://github.com/koinos/koinos-jsonrpc/issues/33",
+          "is_pr": false
+        },
+        {
+          "number": 5,
+          "title": "Support IPv6",
+          "url": "https://github.com/koinos/koinos-jsonrpc/issues/5",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-mempool",
+      "url": "https://github.com/koinos/koinos-mempool",
+      "default_branch": "master",
+      "head": "2aa415fc75fd40038509f06e66688ab505cf8df8",
+      "head_date": "2025-03-13T16:03:32-06:00",
+      "archived": false,
+      "pushed_at": "2025-03-13T22:03:35Z",
+      "selected_tag": "v1.5.0",
+      "selected_commit": "3f2a276e4b3e4fa37c69031b2f6f707915644086",
+      "releases": [
+        {
+          "tag_name": "v1.5.0",
+          "published_at": "2025-02-05T00:05:44Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.5.0"
+        },
+        {
+          "tag_name": "v1.4.0",
+          "published_at": "2024-04-26T20:26:20Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.4.0"
+        },
+        {
+          "tag_name": "v1.3.1",
+          "published_at": "2024-04-23T16:39:20Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.3.1"
+        },
+        {
+          "tag_name": "v1.3.0",
+          "published_at": "2024-03-14T23:25:11Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.3.0"
+        },
+        {
+          "tag_name": "v1.3.0-rc1",
+          "published_at": "2023-11-22T18:06:25Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.3.0-rc1"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2023-02-13T18:19:41Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.1",
+          "published_at": "2022-11-29T20:13:56Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.0.1"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:38:32Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-10-12T21:43:47Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T19:35:05Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-mempool/releases/tag/v0.4.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.5.0",
+          "commit": "3f2a276e4b3e4fa37c69031b2f6f707915644086"
+        },
+        {
+          "name": "v1.4.0",
+          "commit": "053670ac766aeb1292d229fab79755691b38ca63"
+        },
+        {
+          "name": "v1.3.1",
+          "commit": "5dd40fb29fbabbeefa0d91398ac1fa09300a61d0"
+        },
+        {
+          "name": "v1.3.0",
+          "commit": "8b7e78e0d5cd41c68ee8be9b1618e4cb82d91276"
+        },
+        {
+          "name": "v1.3.0-rc1",
+          "commit": "c1f6f28db0ba21ea3d938ec1b3324f0a0b281cc7"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "6c41c7354883f4ac6ebe98d805bacf45207cc5db"
+        },
+        {
+          "name": "v1.0.1",
+          "commit": "54d52da7c87b9b98610a8e7df7b48760be12821b"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "09e0719f514c0afb6e00b0fdad519c43a4b55ec0"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "5233e6acfdd50aa1a8fba88f0166f3b9360695cc"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "5dcbc240a90dc3fefe9b13cf77d29778a7e718b4"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "f1826471f094f3ae48f577b3eabb8f9827e12e74"
+        },
+        {
+          "name": "v0.2.0",
+          "commit": "cffd31400a8f0b96bab643612ab21a6ffd46a451"
+        },
+        {
+          "name": "v0.1.0",
+          "commit": "3372a46b4ca560a55fbbcbbe24031fe9f06e8d57"
+        }
+      ],
+      "open_items": []
+    },
+    {
+      "repository": "koinos/koinos-p2p",
+      "url": "https://github.com/koinos/koinos-p2p",
+      "default_branch": "master",
+      "head": "e2267ba230960b5e4100c16ad84c42cfc12eec4b",
+      "head_date": "2025-02-04T20:27:19+01:00",
+      "archived": false,
+      "pushed_at": "2026-02-23T21:51:42Z",
+      "selected_tag": "v1.3.0",
+      "selected_commit": "e2267ba230960b5e4100c16ad84c42cfc12eec4b",
+      "releases": [
+        {
+          "tag_name": "v1.3.0",
+          "published_at": "2025-02-05T00:04:49Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v1.3.0"
+        },
+        {
+          "tag_name": "v1.2.0",
+          "published_at": "2024-09-10T12:31:41Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v1.2.0"
+        },
+        {
+          "tag_name": "v1.1.1",
+          "published_at": "2024-06-07T17:32:08Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v1.1.1"
+        },
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-04-09T19:17:05Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.1",
+          "published_at": "2023-08-29T18:01:21Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v1.0.1"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:39:24Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "published_at": "2022-10-14T18:15:53Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v0.4.2"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-10-12T22:28:43Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T20:20:02Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v0.4.0"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "published_at": "2022-03-08T17:35:03Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-p2p/releases/tag/v0.3.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.3.0",
+          "commit": "e2267ba230960b5e4100c16ad84c42cfc12eec4b"
+        },
+        {
+          "name": "v1.2.0",
+          "commit": "07c35f04d19f60737bffbf82dbbc3634d3852db2"
+        },
+        {
+          "name": "v1.1.1",
+          "commit": "0b2f271f53b7f5398b8d130be19ee832e93590a7"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "442fa3741056e5934203d1b532d88bbd1c40b3c0"
+        },
+        {
+          "name": "v1.0.1",
+          "commit": "ed8e573183b3a8ba0e9883360f678f28f5b30494"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "9a434414212b5aed3f46e88e6ef660d6bdb71058"
+        },
+        {
+          "name": "v0.4.2",
+          "commit": "48a77527ae631f04d1c819170c8ebd8705618a23"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "6116fafec859bbf720cd7d0ebf0b33c3c067e38f"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "b8c57ccfbcb0f7a9413715d6b465420b0d063b6b"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "82f9d8a040d8430892d2dd1765dc6a3756922e37"
+        },
+        {
+          "name": "v0.2.0",
+          "commit": "9cac5509f1e6a8be534dde789b81e740a783ad50"
+        },
+        {
+          "name": "v0.1.0",
+          "commit": "091ab45db961d8dd83768b3b09f02188f5be403f"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 323,
+          "title": "Add multi-arch Docker builds for ARM64 support",
+          "url": "https://github.com/koinos/koinos-p2p/pull/323",
+          "is_pr": true
+        },
+        {
+          "number": 312,
+          "title": "#307: Optimize p2p sync requests",
+          "url": "https://github.com/koinos/koinos-p2p/pull/312",
+          "is_pr": true
+        },
+        {
+          "number": 307,
+          "title": "[FEATURE]: Sync optimization",
+          "url": "https://github.com/koinos/koinos-p2p/issues/307",
+          "is_pr": false
+        },
+        {
+          "number": 280,
+          "title": "[BUG]: Incorrect seed causes panic",
+          "url": "https://github.com/koinos/koinos-p2p/issues/280",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-rest",
+      "url": "https://github.com/koinos/koinos-rest",
+      "default_branch": "master",
+      "head": "d7f5bc90f11f78af9167e64913a028c00036d134",
+      "head_date": "2026-06-16T16:03:29Z",
+      "archived": false,
+      "pushed_at": "2026-06-16T16:10:33Z",
+      "selected_tag": "v1.1.1",
+      "selected_commit": "d7f5bc90f11f78af9167e64913a028c00036d134",
+      "releases": [
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2026-04-09T09:15:28Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-rest/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2024-12-03T19:22:59Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-rest/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.1.0",
+          "published_at": "2024-05-13T19:03:20Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-rest/releases/tag/v0.1.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.1.1",
+          "commit": "d7f5bc90f11f78af9167e64913a028c00036d134"
+        },
+        {
+          "name": "v1.1.0",
+          "commit": "8e1803343002753c70d9cf2cab71b26e73c5711d"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "74e4c6e2b05db63cc80fdffbd626cb226099c13c"
+        },
+        {
+          "name": "v0.1.0",
+          "commit": "a3cc930ea24e40ea4eaa9f1490693d62f9506b60"
+        }
+      ],
+      "open_items": [
+        {
+          "number": 44,
+          "title": "[FEATURE]: Clear contract address cache when appropriate",
+          "url": "https://github.com/koinos/koinos-rest/issues/44",
+          "is_pr": false
+        },
+        {
+          "number": 41,
+          "title": "[FEATURE]: Standardize Error Responses",
+          "url": "https://github.com/koinos/koinos-rest/issues/41",
+          "is_pr": false
+        },
+        {
+          "number": 3,
+          "title": "Turn off hosting the website (optionally is ok)",
+          "url": "https://github.com/koinos/koinos-rest/issues/3",
+          "is_pr": false
+        }
+      ]
+    },
+    {
+      "repository": "koinos/koinos-transaction-store",
+      "url": "https://github.com/koinos/koinos-transaction-store",
+      "default_branch": "master",
+      "head": "e246b0c087e2204443fbc87873710c6a8e0c6b1b",
+      "head_date": "2024-10-07T16:57:31+02:00",
+      "archived": false,
+      "pushed_at": "2024-10-07T14:57:34Z",
+      "selected_tag": "v1.1.0",
+      "selected_commit": "c8d985ab1b0dd3862fd2d0099f4458ebc6e0920c",
+      "releases": [
+        {
+          "tag_name": "v1.1.0",
+          "published_at": "2024-04-09T19:17:34Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v1.1.0"
+        },
+        {
+          "tag_name": "v1.0.0",
+          "published_at": "2022-11-04T19:40:40Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v1.0.0"
+        },
+        {
+          "tag_name": "v0.4.3",
+          "published_at": "2022-10-14T18:16:45Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v0.4.3"
+        },
+        {
+          "tag_name": "v0.4.2",
+          "published_at": "2022-10-12T22:25:37Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v0.4.2"
+        },
+        {
+          "tag_name": "v0.4.1",
+          "published_at": "2022-09-16T21:06:48Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v0.4.1"
+        },
+        {
+          "tag_name": "v0.4.0",
+          "published_at": "2022-08-22T20:21:12Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v0.4.0"
+        },
+        {
+          "tag_name": "v0.3.0",
+          "published_at": "2022-03-08T17:35:47Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v0.3.0"
+        },
+        {
+          "tag_name": "v0.2.0",
+          "published_at": "2021-11-02T18:56:44Z",
+          "prerelease": false,
+          "draft": false,
+          "html_url": "https://github.com/koinos/koinos-transaction-store/releases/tag/v0.2.0"
+        }
+      ],
+      "tags": [
+        {
+          "name": "v1.1.0",
+          "commit": "c8d985ab1b0dd3862fd2d0099f4458ebc6e0920c"
+        },
+        {
+          "name": "v1.0.0",
+          "commit": "4e2c51dce47ee96f8d6e3a4ce2ce1577ccbc71bd"
+        },
+        {
+          "name": "v0.4.3",
+          "commit": "af6e23c790906b598b534d7ec0751b2b16f0549f"
+        },
+        {
+          "name": "v0.4.2",
+          "commit": "aa53ebd13d53cd4c5ab4bc62f649f86169dbc438"
+        },
+        {
+          "name": "v0.4.1",
+          "commit": "50a4bdbf578ae4aca0e8e7a2ace45cb91e091183"
+        },
+        {
+          "name": "v0.4.0",
+          "commit": "f79d2cc22a4d25ba3d5d596cc214a4d33ac01d7d"
+        },
+        {
+          "name": "v0.3.0",
+          "commit": "1f7fe9f2a7acd4c5718308cede1ce7fd65376c11"
+        },
+        {
+          "name": "v0.2.0",
+          "commit": "0afe29af15d25672ba070d48b028293272f91e75"
+        }
+      ],
+      "open_items": []
+    }
+  ],
+  "errors": []
+}

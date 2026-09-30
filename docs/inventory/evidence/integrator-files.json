@@ -1,0 +1,34 @@
+{
+  "README.md": {
+    "sha256": "264220138706f2b3156035dd837e5e01331c7b3c70e896329b915719a94c2e33",
+    "size_bytes": 4131
+  },
+  "docker-compose.yml": {
+    "sha256": "f06e1cced7b41ccac11c990d3373698810756b5402083d58e4986363e87e2341",
+    "size_bytes": 4895
+  },
+  "env.example": {
+    "sha256": "f8bd286a4f285b08ed1cd922087dd3c957b7d0e14fc8ff19560ce1129b466967",
+    "size_bytes": 586
+  },
+  "config-example/config.yml": {
+    "sha256": "01bcdd71b8362171a1097be45c3fd0f3231aacef17492f629fdc8ab56cc278a3",
+    "size_bytes": 4691
+  },
+  "config-example/rabbitmq.conf": {
+    "sha256": "1cb080114cb1810c238f8f8d731370f20ce7fa8aa57dcdfd57b678abfc764b0a",
+    "size_bytes": 29
+  },
+  "config-example/genesis_data.json": {
+    "sha256": "ad3eadc626576f397d8ce4fc9cc43b96fc200e0489e4ed34bcaa3587415f9079",
+    "size_bytes": 582092
+  },
+  "config-example/koinos_descriptors.pb": {
+    "sha256": "a30b35a0c781e13b0003722ea3ffa7e915d961aafc2ed37d51802a05cb07538a",
+    "size_bytes": 67705
+  },
+  "harbinger/env.example": {
+    "sha256": "5e79b00b9b42e57fb786daebedba933884b8de6382efc9bee28971339ce120da",
+    "size_bytes": 584
+  }
+}

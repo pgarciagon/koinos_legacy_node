@@ -1,0 +1,38 @@
+[
+  {
+    "repository": "koinos/koinos-account-history",
+    "selected_commit": "1d592c40ddd06c022eab3153266bd428752c6ded",
+    "head": "636423ea140684d0b5ab523b35039a88a8206c02",
+    "diff_stat": " .travis.yml                                    | 3 ++-\n CMakeLists.txt                                 | 2 +-\n Dockerfile                                     | 2 +-\n src/koinos/account_history/account_history.cpp | 6 +-----\n src/koinos_account_history.cpp                 | 6 ++++++\n 5 files changed, 11 insertions(+), 8 deletions(-)\n"
+  },
+  {
+    "repository": "koinos/koinos-block-store",
+    "selected_commit": "2bb94558df61c71eb241002635444cdddce0843c",
+    "head": "f195441ff2eaa757645a7997e96957c91bf930ac",
+    "diff_stat": " .travis.yml | 15 +--------------\n 1 file changed, 1 insertion(+), 14 deletions(-)\n"
+  },
+  {
+    "repository": "koinos/koinos-contract-meta-store",
+    "selected_commit": "64e803e1db1a9bb2946ae379ddad0e5611442ec5",
+    "head": "75b7a0d128ce39a59b2195ae57db83c2af4b5a32",
+    "diff_stat": " .travis.yml                           | 15 +--------------\n internal/metastore/mata_store_test.go |  3 +--\n 2 files changed, 2 insertions(+), 16 deletions(-)\n"
+  },
+  {
+    "repository": "koinos/koinos-grpc",
+    "selected_commit": "3a94c34fa002552ef586cd1af9bfd34d175430d3",
+    "head": "a1df93bd336760f7c8aa76c5e4c45eacb3b6888e",
+    "diff_stat": " .travis.yml    | 14 +-------------\n CMakeLists.txt |  2 +-\n 2 files changed, 2 insertions(+), 14 deletions(-)\n"
+  },
+  {
+    "repository": "koinos/koinos-mempool",
+    "selected_commit": "3f2a276e4b3e4fa37c69031b2f6f707915644086",
+    "head": "2aa415fc75fd40038509f06e66688ab505cf8df8",
+    "diff_stat": " CMakeLists.txt                 |  2 +-\n src/koinos/mempool/mempool.cpp | 54 ++++++++++++++++++++++++++++++++++++++++++\n src/koinos/mempool/mempool.hpp |  3 +++\n src/koinos_mempool.cpp         | 29 +++++++++++++++++++++++\n tests/mempool_tests.cpp        | 15 ++++++++++++\n 5 files changed, 102 insertions(+), 1 deletion(-)\n"
+  },
+  {
+    "repository": "koinos/koinos-transaction-store",
+    "selected_commit": "c8d985ab1b0dd3862fd2d0099f4458ebc6e0920c",
+    "head": "e246b0c087e2204443fbc87873710c6a8e0c6b1b",
+    "diff_stat": " .travis.yml | 15 +--------------\n 1 file changed, 1 insertion(+), 14 deletions(-)\n"
+  }
+]

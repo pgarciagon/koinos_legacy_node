@@ -1,0 +1,42 @@
+[
+  {
+    "headRefOid": "6953e7c1f00541a96d8b9d4f6298df5fffacbf6c",
+    "isDraft": false,
+    "number": 862,
+    "state": "OPEN",
+    "title": "Fix double-free of cached WASM module in fizzy vm_manager",
+    "url": "https://github.com/koinos/koinos-chain/pull/862"
+  },
+  {
+    "headRefOid": "493905e6bf6a323c9e62b09bb1dc3e8c3db6ff3d",
+    "isDraft": false,
+    "number": 156,
+    "state": "OPEN",
+    "title": "Fix reported block producer version",
+    "url": "https://github.com/koinos/koinos-block-producer/pull/156"
+  },
+  {
+    "headRefOid": "0cd0c568bc8330387e4e8e8bb3c7005fbc9b5eae",
+    "isDraft": false,
+    "number": 323,
+    "state": "OPEN",
+    "title": "Add multi-arch Docker builds for ARM64 support",
+    "url": "https://github.com/koinos/koinos-p2p/pull/323"
+  },
+  {
+    "headRefOid": "7d620ddd1b1fe535b24678efc53469483edd3e0c",
+    "isDraft": false,
+    "number": 312,
+    "state": "OPEN",
+    "title": "#307: Optimize p2p sync requests",
+    "url": "https://github.com/koinos/koinos-p2p/pull/312"
+  },
+  {
+    "headRefOid": "7fec4ce8e90d12ea1d60c36435c6a0d60d88fcc6",
+    "isDraft": false,
+    "number": 109,
+    "state": "OPEN",
+    "title": "Document current public Koinos testnet endpoint and faucet",
+    "url": "https://github.com/koinos/koinos/pull/109"
+  }
+]

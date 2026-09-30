@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-09-30T06:01:20.781311+00:00",
+  "compose_cli": "Docker Compose version v5.0.2",
+  "repository_records": 12,
+  "registry_image_records": 12,
+  "compose_service_counts": {
+    "default": 5,
+    "producer_and_jsonrpc": 7,
+    "all": 12
+  },
+  "koinos_image_platforms": [
+    "linux/amd64"
+  ],
+  "checks": [
+    "JSON evidence parses",
+    "Local Markdown links resolve",
+    "Collection scripts compile",
+    "Reference checkouts have no local changes"
+  ],
+  "not_executed": [
+    "container startup",
+    "image layer download",
+    "software compilation",
+    "node tests",
+    "production inspection",
+    "deployment"
+  ]
+}

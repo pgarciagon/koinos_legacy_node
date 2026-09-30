@@ -1,0 +1,792 @@
+[
+  {
+    "tag": "v1.0.0",
+    "commit": "a3f987811d8379b21daea2b79374365010d7919b",
+    "files": {
+      "Koinos.cmake": "list(APPEND CMAKE_MODULE_PATH \"${CMAKE_CURRENT_LIST_DIR}\")\n\noption(STATIC_ANALYSIS \"Run static analysis during build\" OFF)\noption(FORCE_COLORED_OUTPUT \"Always produce ANSI-colored output (GNU/Clang only)\" OFF)\noption(HUNTER_RUN_UPLOAD \"Upload Hunter packages to binary cache server\" OFF)\noption(COVERAGE \"Run code coverage\" OFF)\noption(BUILD_TESTING \"Build tests\" ON)\noption(BUILD_EXAMPLES \"Build examples\" ON)\n\nset(SANITIZER \"None\" CACHE STRING \"Sanitizer build type, options are: None Address Stack Thread\")\nset_property(CACHE SANITIZER PROPERTY STRINGS None Address Stack Thread)\n\nset(HUNTER_CACHE_SERVERS \"https://github.com/koinos/hunter-cache\"\n  CACHE STRING \"Koinos Hunter cache server\")\n\nset(HUNTER_PASSWORDS_PATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/passwords.cmake\"\n  CACHE FILEPATH \"Koinos Hunter passwords\")\n\ninclude(HunterGate)\n\nHunterGate(\n  URL \"https://github.com/cpp-pm/hunter/archive/v0.25.5.tar.gz\"\n  SHA1 \"a20151e4c0740ee7d0f9994476856d813cdead29\"\n  FILEPATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/config.cmake\"\n)\n\ninclude(KoinosCompilerOptions)\ninclude(KoinosStaticAnalysis)\ninclude(KoinosCoverage)\ninclude(KoinosUnitTests)\ninclude(KoinosFormat)\ninclude(KoinosAddPackage)\ninclude(KoinosVersion)\ninclude(KoinosGenerator)\ninclude(KoinosGit)\ninclude(KoinosInstall)\n\nkoinos_add_git_target()\n",
+      "Hunter/config.cmake": "hunter_config(Boost\n   VERSION ${HUNTER_Boost_VERSION}\n   CMAKE_ARGS\n      USE_CONFIG_FROM_BOOST=ON\n      Boost_USE_STATIC_LIBS=ON\n      Boost_NO_BOOST_CMAKE=ON\n)\n\nhunter_config(Protobuf\n   URL  \"https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz\"\n   SHA1 \"5796707a98eec15ffb3ad86ff50e8eec5fa65e68\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(rocksdb\n   URL \"https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz\"\n   SHA1 \"ef3e82eb750013c9fec5220911213609613776d7\"\n   CMAKE_ARGS\n      WITH_TESTS=OFF\n      WITH_TOOLS=OFF\n      WITH_JNI=OFF\n      WITH_BENCHMARK_TOOLS=OFF\n      WITH_CORE_TOOLS=OFF\n      WITH_GFLAGS=OFF\n      PORTABLE=ON\n      FAIL_ON_WARNINGS=OFF\n      ROCKSDB_BUILD_SHARED=OFF\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(fizzy\n   URL \"https://github.com/koinos/fizzy/archive/928e89736c3dc26006858619c9267a0595d6dc5d.tar.gz\"\n   SHA1 \"b01e92622d11fedb69b603d9a6478449879f25d1\"\n)\n\nhunter_config(rabbitmq-c\n   URL \"https://github.com/alanxz/rabbitmq-c/archive/b8e5f43b082c5399bf1ee723c3fd3c19cecd843e.tar.gz\"\n   SHA1 \"35d4ce3e4f0a5348de64bbed25c6e1df72da2594\"\n   CMAKE_ARGS\n      ENABLE_SSL_SUPPORT=OFF\n)\n\nhunter_config(libsecp256k1\n   URL \"https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz\"\n   SHA1 \"0534fa8948f279b26fd102905215a56f0ad7fa18\"\n)\n\nhunter_config(libsecp256k1-vrf\n   URL \"https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz\"\n   SHA1 \"62df75e061c4afd6f0548f1e8267cc3da6abee15\"\n)\n\nhunter_config(yaml-cpp\n   VERSION \"0.6.3\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(ethash\n   URL \"https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz\"\n   SHA1 \"e8dabf60ce215b6763191ffd0ac835b89b7de5e0\"\n   CMAKE_ARGS\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\n\nhunter_config(gRPC\n   VERSION 1.31.0-p0\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(abseil\n   VERSION ${HUNTER_abseil_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(re2\n   VERSION ${HUNTER_re2_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(c-ares\n   VERSION ${HUNTER_c-ares_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(ZLIB\n   VERSION ${HUNTER_ZLIB_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/log\")\n   hunter_config(koinos_log\n      GIT_SUBMODULE \"external/log\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_log\n      URL  \"https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz\"\n      SHA1 \"44505fceff05bddb374f15fe328b6681147513d8\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/util\")\n   hunter_config(koinos_util\n      GIT_SUBMODULE \"external/util\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_util\n      URL  \"https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"06e08703417187e689e16bd36e74ac564e2b6366\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/proto\")\n   hunter_config(koinos_proto\n      GIT_SUBMODULE \"external/proto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_proto\n      URL  \"https://github.com/koinos/koinos-proto-cpp/archive/v1.4.0.tar.gz\"\n      SHA1 \"eb5973241ac82ca9800b222d4637d28582cbb0e4\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/exception\")\n   hunter_config(koinos_exception\n      GIT_SUBMODULE \"external/exception\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_exception\n      URL  \"https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"e7cf9e149268ee78b1b0c342eccd40ce9354a3ad\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/crypto\")\n   hunter_config(koinos_crypto\n      GIT_SUBMODULE \"external/crypto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_crypto\n      URL  \"https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"3b459f321d106e587dc94b13b7f5be230395e183\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/mq\")\n   hunter_config(koinos_mq\n      GIT_SUBMODULE \"external/mq\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_mq\n      URL  \"https://github.com/koinos/koinos-mq-cpp/archive/v1.0.3.tar.gz\"\n      SHA1 \"c7e9ec6569e98c5f8ab952775169fe83c95acab5\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/state_db\")\n   hunter_config(koinos_state_db\n      GIT_SUBMODULE \"external/state_db\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_state_db\n      URL  \"https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.1.tar.gz\"\n      SHA1 \"9c994f5f103deabf3cfba736a74c2ffec60c5c8a\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n",
+      "KoinosCompilerOptions.cmake": "set(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\nset(CMAKE_CXX_EXTENSIONS OFF)\nset(CMAKE_CXX_VISIBILITY_PRESET hidden)\nset(Boost_NO_BOOST_CMAKE ON)\n\n# This is to force color output when using ccache with Unix Makefiles\nif (FORCE_COLORED_OUTPUT)\n  if (CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" )\n    add_compile_options(-fdiagnostics-color=always)\n  elseif(CMAKE_CXX_COMPILER_ID STREQUAL \"Clang\" OR CMAKE_CXX_COMPILER_ID STREQUAL \"AppleClang\" )\n    add_compile_options(-fcolor-diagnostics)\n  endif()\nendif()\n\nif (MSVC)\n  # warning level 4 and all warnings as errors\n  add_compile_options(/W4 /WX)\nelse()\n  # lots of warnings and all warnings as errors\n  add_compile_options(-Werror -Wno-unknown-pragmas)\nendif()\n\nif (SANITIZER MATCHES \"Address\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\n  add_link_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\nelseif(SANITIZER MATCHES \"Stack\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=safe-stack)\n  add_link_options(\n    -fsanitize=safe-stack)\nelseif(SANITIZER MATCHES \"Thread\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=thread)\n  add_link_options(\n    -fsanitize=thread)\nelseif(NOT SANITIZER MATCHES \"None\")\n  message(FATAL_ERROR \"Unknown value for option SANITIZER: '${SANITIZER}'. Must be None, Address, Stack, or Thread.\")\nendif()\n"
+    },
+    "packages": [
+      {
+        "name": "Boost",
+        "urls": [],
+        "versions": [
+          "${HUNTER_Boost_VERSION}"
+        ]
+      },
+      {
+        "name": "Protobuf",
+        "urls": [
+          "https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rocksdb",
+        "urls": [
+          "https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "fizzy",
+        "urls": [
+          "https://github.com/koinos/fizzy/archive/928e89736c3dc26006858619c9267a0595d6dc5d.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rabbitmq-c",
+        "urls": [
+          "https://github.com/alanxz/rabbitmq-c/archive/b8e5f43b082c5399bf1ee723c3fd3c19cecd843e.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1",
+        "urls": [
+          "https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1-vrf",
+        "urls": [
+          "https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "yaml-cpp",
+        "urls": [],
+        "versions": [
+          "\"0.6.3\""
+        ]
+      },
+      {
+        "name": "ethash",
+        "urls": [
+          "https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "gRPC",
+        "urls": [],
+        "versions": [
+          "1.31.0-p0"
+        ]
+      },
+      {
+        "name": "abseil",
+        "urls": [],
+        "versions": [
+          "${HUNTER_abseil_VERSION}"
+        ]
+      },
+      {
+        "name": "re2",
+        "urls": [],
+        "versions": [
+          "${HUNTER_re2_VERSION}"
+        ]
+      },
+      {
+        "name": "c-ares",
+        "urls": [],
+        "versions": [
+          "${HUNTER_c-ares_VERSION}"
+        ]
+      },
+      {
+        "name": "ZLIB",
+        "urls": [],
+        "versions": [
+          "${HUNTER_ZLIB_VERSION}"
+        ]
+      },
+      {
+        "name": "koinos_log",
+        "urls": [
+          "https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_util",
+        "urls": [
+          "https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_proto",
+        "urls": [
+          "https://github.com/koinos/koinos-proto-cpp/archive/v1.4.0.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_exception",
+        "urls": [
+          "https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_crypto",
+        "urls": [
+          "https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_mq",
+        "urls": [
+          "https://github.com/koinos/koinos-mq-cpp/archive/v1.0.3.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_state_db",
+        "urls": [
+          "https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.1.tar.gz"
+        ],
+        "versions": []
+      }
+    ]
+  },
+  {
+    "tag": "v1.0.2",
+    "commit": "198628632580762b778a9c6f21e773647c6f0d93",
+    "files": {
+      "Koinos.cmake": "list(APPEND CMAKE_MODULE_PATH \"${CMAKE_CURRENT_LIST_DIR}\")\n\noption(STATIC_ANALYSIS \"Run static analysis during build\" OFF)\noption(FORCE_COLORED_OUTPUT \"Always produce ANSI-colored output (GNU/Clang only)\" OFF)\noption(HUNTER_RUN_UPLOAD \"Upload Hunter packages to binary cache server\" OFF)\noption(COVERAGE \"Run code coverage\" OFF)\noption(BUILD_TESTING \"Build tests\" ON)\noption(BUILD_EXAMPLES \"Build examples\" ON)\n\nset(SANITIZER \"None\" CACHE STRING \"Sanitizer build type, options are: None Address Stack Thread\")\nset_property(CACHE SANITIZER PROPERTY STRINGS None Address Stack Thread)\n\nset(HUNTER_CACHE_SERVERS \"https://github.com/koinos/hunter-cache\"\n  CACHE STRING \"Koinos Hunter cache server\")\n\nset(HUNTER_PASSWORDS_PATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/passwords.cmake\"\n  CACHE FILEPATH \"Koinos Hunter passwords\")\n\ninclude(HunterGate)\n\nHunterGate(\n  URL \"https://github.com/cpp-pm/hunter/archive/v0.25.5.tar.gz\"\n  SHA1 \"a20151e4c0740ee7d0f9994476856d813cdead29\"\n  FILEPATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/config.cmake\"\n)\n\ninclude(KoinosCompilerOptions)\ninclude(KoinosStaticAnalysis)\ninclude(KoinosCoverage)\ninclude(KoinosUnitTests)\ninclude(KoinosFormat)\ninclude(KoinosAddPackage)\ninclude(KoinosVersion)\ninclude(KoinosGenerator)\ninclude(KoinosGit)\ninclude(KoinosInstall)\n\nkoinos_add_git_target()\n",
+      "Hunter/config.cmake": "hunter_config(Boost\n   VERSION ${HUNTER_Boost_VERSION}\n   CMAKE_ARGS\n      USE_CONFIG_FROM_BOOST=ON\n      Boost_USE_STATIC_LIBS=ON\n      Boost_NO_BOOST_CMAKE=ON\n)\n\nhunter_config(Protobuf\n   URL  \"https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz\"\n   SHA1 \"5796707a98eec15ffb3ad86ff50e8eec5fa65e68\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(rocksdb\n   URL \"https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz\"\n   SHA1 \"ef3e82eb750013c9fec5220911213609613776d7\"\n   CMAKE_ARGS\n      WITH_TESTS=OFF\n      WITH_TOOLS=OFF\n      WITH_JNI=OFF\n      WITH_BENCHMARK_TOOLS=OFF\n      WITH_CORE_TOOLS=OFF\n      WITH_GFLAGS=OFF\n      PORTABLE=ON\n      FAIL_ON_WARNINGS=OFF\n      ROCKSDB_BUILD_SHARED=OFF\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(fizzy\n   URL \"https://github.com/koinos/fizzy/archive/928e89736c3dc26006858619c9267a0595d6dc5d.tar.gz\"\n   SHA1 \"b01e92622d11fedb69b603d9a6478449879f25d1\"\n)\n\nhunter_config(rabbitmq-c\n   URL \"https://github.com/alanxz/rabbitmq-c/archive/b8e5f43b082c5399bf1ee723c3fd3c19cecd843e.tar.gz\"\n   SHA1 \"35d4ce3e4f0a5348de64bbed25c6e1df72da2594\"\n   CMAKE_ARGS\n      ENABLE_SSL_SUPPORT=OFF\n)\n\nhunter_config(libsecp256k1\n   URL \"https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz\"\n   SHA1 \"0534fa8948f279b26fd102905215a56f0ad7fa18\"\n)\n\nhunter_config(libsecp256k1-vrf\n   URL \"https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz\"\n   SHA1 \"62df75e061c4afd6f0548f1e8267cc3da6abee15\"\n)\n\nhunter_config(yaml-cpp\n   VERSION \"0.6.3\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(ethash\n   URL \"https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz\"\n   SHA1 \"e8dabf60ce215b6763191ffd0ac835b89b7de5e0\"\n   CMAKE_ARGS\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\n\nhunter_config(gRPC\n   VERSION 1.31.0-p0\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(abseil\n   VERSION ${HUNTER_abseil_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(re2\n   VERSION ${HUNTER_re2_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(c-ares\n   VERSION ${HUNTER_c-ares_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(ZLIB\n   VERSION ${HUNTER_ZLIB_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/log\")\n   hunter_config(koinos_log\n      GIT_SUBMODULE \"external/log\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_log\n      URL  \"https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz\"\n      SHA1 \"44505fceff05bddb374f15fe328b6681147513d8\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/util\")\n   hunter_config(koinos_util\n      GIT_SUBMODULE \"external/util\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_util\n      URL  \"https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"06e08703417187e689e16bd36e74ac564e2b6366\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/proto\")\n   hunter_config(koinos_proto\n      GIT_SUBMODULE \"external/proto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_proto\n      URL  \"https://github.com/koinos/koinos-proto-cpp/archive/v2.0.1.tar.gz\"\n      SHA1 \"116610b7d208703038926b314aa8ca80475d377a\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/exception\")\n   hunter_config(koinos_exception\n      GIT_SUBMODULE \"external/exception\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_exception\n      URL  \"https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"e7cf9e149268ee78b1b0c342eccd40ce9354a3ad\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/crypto\")\n   hunter_config(koinos_crypto\n      GIT_SUBMODULE \"external/crypto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_crypto\n      URL  \"https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"3b459f321d106e587dc94b13b7f5be230395e183\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/mq\")\n   hunter_config(koinos_mq\n      GIT_SUBMODULE \"external/mq\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_mq\n      URL  \"https://github.com/koinos/koinos-mq-cpp/archive/v1.0.3.tar.gz\"\n      SHA1 \"c7e9ec6569e98c5f8ab952775169fe83c95acab5\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/state_db\")\n   hunter_config(koinos_state_db\n      GIT_SUBMODULE \"external/state_db\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_state_db\n      URL  \"https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.1.tar.gz\"\n      SHA1 \"9c994f5f103deabf3cfba736a74c2ffec60c5c8a\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n",
+      "KoinosCompilerOptions.cmake": "set(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\nset(CMAKE_CXX_EXTENSIONS OFF)\nset(CMAKE_CXX_VISIBILITY_PRESET hidden)\nset(Boost_NO_BOOST_CMAKE ON)\n\n# This is to force color output when using ccache with Unix Makefiles\nif (FORCE_COLORED_OUTPUT)\n  if (CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" )\n    add_compile_options(-fdiagnostics-color=always)\n  elseif(CMAKE_CXX_COMPILER_ID STREQUAL \"Clang\" OR CMAKE_CXX_COMPILER_ID STREQUAL \"AppleClang\" )\n    add_compile_options(-fcolor-diagnostics)\n  endif()\nendif()\n\nif (MSVC)\n  # warning level 4 and all warnings as errors\n  add_compile_options(/W4 /WX)\nelse()\n  # lots of warnings and all warnings as errors\n  add_compile_options(-Werror -Wno-unknown-pragmas)\nendif()\n\nif (SANITIZER MATCHES \"Address\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\n  add_link_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\nelseif(SANITIZER MATCHES \"Stack\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=safe-stack)\n  add_link_options(\n    -fsanitize=safe-stack)\nelseif(SANITIZER MATCHES \"Thread\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=thread)\n  add_link_options(\n    -fsanitize=thread)\nelseif(NOT SANITIZER MATCHES \"None\")\n  message(FATAL_ERROR \"Unknown value for option SANITIZER: '${SANITIZER}'. Must be None, Address, Stack, or Thread.\")\nendif()\n"
+    },
+    "packages": [
+      {
+        "name": "Boost",
+        "urls": [],
+        "versions": [
+          "${HUNTER_Boost_VERSION}"
+        ]
+      },
+      {
+        "name": "Protobuf",
+        "urls": [
+          "https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rocksdb",
+        "urls": [
+          "https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "fizzy",
+        "urls": [
+          "https://github.com/koinos/fizzy/archive/928e89736c3dc26006858619c9267a0595d6dc5d.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rabbitmq-c",
+        "urls": [
+          "https://github.com/alanxz/rabbitmq-c/archive/b8e5f43b082c5399bf1ee723c3fd3c19cecd843e.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1",
+        "urls": [
+          "https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1-vrf",
+        "urls": [
+          "https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "yaml-cpp",
+        "urls": [],
+        "versions": [
+          "\"0.6.3\""
+        ]
+      },
+      {
+        "name": "ethash",
+        "urls": [
+          "https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "gRPC",
+        "urls": [],
+        "versions": [
+          "1.31.0-p0"
+        ]
+      },
+      {
+        "name": "abseil",
+        "urls": [],
+        "versions": [
+          "${HUNTER_abseil_VERSION}"
+        ]
+      },
+      {
+        "name": "re2",
+        "urls": [],
+        "versions": [
+          "${HUNTER_re2_VERSION}"
+        ]
+      },
+      {
+        "name": "c-ares",
+        "urls": [],
+        "versions": [
+          "${HUNTER_c-ares_VERSION}"
+        ]
+      },
+      {
+        "name": "ZLIB",
+        "urls": [],
+        "versions": [
+          "${HUNTER_ZLIB_VERSION}"
+        ]
+      },
+      {
+        "name": "koinos_log",
+        "urls": [
+          "https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_util",
+        "urls": [
+          "https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_proto",
+        "urls": [
+          "https://github.com/koinos/koinos-proto-cpp/archive/v2.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_exception",
+        "urls": [
+          "https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_crypto",
+        "urls": [
+          "https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_mq",
+        "urls": [
+          "https://github.com/koinos/koinos-mq-cpp/archive/v1.0.3.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_state_db",
+        "urls": [
+          "https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.1.tar.gz"
+        ],
+        "versions": []
+      }
+    ]
+  },
+  {
+    "tag": "v1.0.7",
+    "commit": "0ae9d1cea641a844de1be8919cf18809a5642959",
+    "files": {
+      "Koinos.cmake": "list(APPEND CMAKE_MODULE_PATH \"${CMAKE_CURRENT_LIST_DIR}\")\n\noption(STATIC_ANALYSIS \"Run static analysis during build\" OFF)\noption(FORCE_COLORED_OUTPUT \"Always produce ANSI-colored output (GNU/Clang only)\" OFF)\noption(HUNTER_RUN_UPLOAD \"Upload Hunter packages to binary cache server\" OFF)\noption(COVERAGE \"Run code coverage\" OFF)\noption(BUILD_TESTING \"Build tests\" ON)\noption(BUILD_EXAMPLES \"Build examples\" ON)\n\nset(SANITIZER \"None\" CACHE STRING \"Sanitizer build type, options are: None Address Stack Thread\")\nset_property(CACHE SANITIZER PROPERTY STRINGS None Address Stack Thread)\n\nset(HUNTER_CACHE_SERVERS \"https://github.com/koinos/hunter-cache\"\n  CACHE STRING \"Koinos Hunter cache server\")\n\nset(HUNTER_PASSWORDS_PATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/passwords.cmake\"\n  CACHE FILEPATH \"Koinos Hunter passwords\")\n\ninclude(HunterGate)\n\nHunterGate(\n  URL \"https://github.com/cpp-pm/hunter/archive/v0.25.5.tar.gz\"\n  SHA1 \"a20151e4c0740ee7d0f9994476856d813cdead29\"\n  FILEPATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/config.cmake\"\n)\n\ninclude(KoinosCompilerOptions)\ninclude(KoinosStaticAnalysis)\ninclude(KoinosCoverage)\ninclude(KoinosUnitTests)\ninclude(KoinosFormat)\ninclude(KoinosAddPackage)\ninclude(KoinosVersion)\ninclude(KoinosGenerator)\ninclude(KoinosGit)\ninclude(KoinosInstall)\n\nkoinos_add_git_target()\n",
+      "Hunter/config.cmake": "hunter_config(Boost\n   URL  \"https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.bz2\"\n   SHA1 \"75b1f569134401d178ad2aaf97a2993898dd7ee3\"\n   CMAKE_ARGS\n      USE_CONFIG_FROM_BOOST=ON\n      Boost_USE_STATIC_LIBS=ON\n      Boost_NO_BOOST_CMAKE=ON\n)\n\nhunter_config(Protobuf\n   URL  \"https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz\"\n   SHA1 \"5796707a98eec15ffb3ad86ff50e8eec5fa65e68\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(rocksdb\n   URL \"https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz\"\n   SHA1 \"ef3e82eb750013c9fec5220911213609613776d7\"\n   CMAKE_ARGS\n      WITH_TESTS=OFF\n      WITH_TOOLS=OFF\n      WITH_JNI=OFF\n      WITH_BENCHMARK_TOOLS=OFF\n      WITH_CORE_TOOLS=OFF\n      WITH_GFLAGS=OFF\n      WITH_LIBURING=OFF\n      PORTABLE=ON\n      FAIL_ON_WARNINGS=OFF\n      ROCKSDB_BUILD_SHARED=OFF\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(fizzy\n   URL \"https://github.com/koinos/fizzy/archive/b9bf7feaa8009a3d4f4bdd49245a5cd55d122055.tar.gz\"\n   SHA1 \"d4e682dca504a831b30274fbec0b154b8b7adfd1\"\n)\n\nhunter_config(rabbitmq-c\n   URL \"https://github.com/alanxz/rabbitmq-c/archive/b8e5f43b082c5399bf1ee723c3fd3c19cecd843e.tar.gz\"\n   SHA1 \"35d4ce3e4f0a5348de64bbed25c6e1df72da2594\"\n   CMAKE_ARGS\n      ENABLE_SSL_SUPPORT=OFF\n)\n\nhunter_config(libsecp256k1\n   URL \"https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz\"\n   SHA1 \"0534fa8948f279b26fd102905215a56f0ad7fa18\"\n)\n\nhunter_config(libsecp256k1-vrf\n   URL \"https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz\"\n   SHA1 \"62df75e061c4afd6f0548f1e8267cc3da6abee15\"\n)\n\nhunter_config(yaml-cpp\n   VERSION \"0.6.3\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(ethash\n   URL \"https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz\"\n   SHA1 \"e8dabf60ce215b6763191ffd0ac835b89b7de5e0\"\n   CMAKE_ARGS\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\n\nhunter_config(gRPC\n   VERSION 1.31.0-p0\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(abseil\n   VERSION ${HUNTER_abseil_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(re2\n   VERSION ${HUNTER_re2_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(c-ares\n   VERSION ${HUNTER_c-ares_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(ZLIB\n   VERSION ${HUNTER_ZLIB_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/log\")\n   hunter_config(koinos_log\n      GIT_SUBMODULE \"external/log\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_log\n      URL  \"https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz\"\n      SHA1 \"44505fceff05bddb374f15fe328b6681147513d8\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/util\")\n   hunter_config(koinos_util\n      GIT_SUBMODULE \"external/util\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_util\n      URL  \"https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"06e08703417187e689e16bd36e74ac564e2b6366\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/proto\")\n   hunter_config(koinos_proto\n      GIT_SUBMODULE \"external/proto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_proto\n      URL  \"https://github.com/koinos/koinos-proto-cpp/archive/v2.5.0.tar.gz\"\n      SHA1 \"b288a124718277e32371cb9d59cadb98b0f7df0c\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/exception\")\n   hunter_config(koinos_exception\n      GIT_SUBMODULE \"external/exception\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_exception\n      URL  \"https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"e7cf9e149268ee78b1b0c342eccd40ce9354a3ad\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/crypto\")\n   hunter_config(koinos_crypto\n      GIT_SUBMODULE \"external/crypto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_crypto\n      URL  \"https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"3b459f321d106e587dc94b13b7f5be230395e183\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/mq\")\n   hunter_config(koinos_mq\n      GIT_SUBMODULE \"external/mq\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_mq\n      URL  \"https://github.com/koinos/koinos-mq-cpp/archive/v1.0.3.tar.gz\"\n      SHA1 \"c7e9ec6569e98c5f8ab952775169fe83c95acab5\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/state_db\")\n   hunter_config(koinos_state_db\n      GIT_SUBMODULE \"external/state_db\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_state_db\n      URL  \"https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.2.tar.gz\"\n      SHA1 \"2c865d9256e639a2cd8227c04dff7483bd9558d3\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n",
+      "KoinosCompilerOptions.cmake": "set(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\nset(CMAKE_CXX_EXTENSIONS OFF)\nset(CMAKE_CXX_VISIBILITY_PRESET hidden)\nset(Boost_NO_BOOST_CMAKE ON)\n\n# This is to force color output when using ccache with Unix Makefiles\nif (FORCE_COLORED_OUTPUT)\n  if (CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" )\n    add_compile_options(-fdiagnostics-color=always)\n  elseif(CMAKE_CXX_COMPILER_ID STREQUAL \"Clang\" OR CMAKE_CXX_COMPILER_ID STREQUAL \"AppleClang\" )\n    add_compile_options(-fcolor-diagnostics)\n  endif()\nendif()\n\nif (MSVC)\n  # warning level 4 and all warnings as errors\n  add_compile_options(/W4 /WX)\nelse()\n  # lots of warnings and all warnings as errors\n  add_compile_options(-Werror -Wno-unknown-pragmas)\nendif()\n\nif (SANITIZER MATCHES \"Address\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\n  add_link_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\nelseif(SANITIZER MATCHES \"Stack\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=safe-stack)\n  add_link_options(\n    -fsanitize=safe-stack)\nelseif(SANITIZER MATCHES \"Thread\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=thread)\n  add_link_options(\n    -fsanitize=thread)\nelseif(NOT SANITIZER MATCHES \"None\")\n  message(FATAL_ERROR \"Unknown value for option SANITIZER: '${SANITIZER}'. Must be None, Address, Stack, or Thread.\")\nendif()\n"
+    },
+    "packages": [
+      {
+        "name": "Boost",
+        "urls": [
+          "https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.bz2"
+        ],
+        "versions": []
+      },
+      {
+        "name": "Protobuf",
+        "urls": [
+          "https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rocksdb",
+        "urls": [
+          "https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "fizzy",
+        "urls": [
+          "https://github.com/koinos/fizzy/archive/b9bf7feaa8009a3d4f4bdd49245a5cd55d122055.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rabbitmq-c",
+        "urls": [
+          "https://github.com/alanxz/rabbitmq-c/archive/b8e5f43b082c5399bf1ee723c3fd3c19cecd843e.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1",
+        "urls": [
+          "https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1-vrf",
+        "urls": [
+          "https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "yaml-cpp",
+        "urls": [],
+        "versions": [
+          "\"0.6.3\""
+        ]
+      },
+      {
+        "name": "ethash",
+        "urls": [
+          "https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "gRPC",
+        "urls": [],
+        "versions": [
+          "1.31.0-p0"
+        ]
+      },
+      {
+        "name": "abseil",
+        "urls": [],
+        "versions": [
+          "${HUNTER_abseil_VERSION}"
+        ]
+      },
+      {
+        "name": "re2",
+        "urls": [],
+        "versions": [
+          "${HUNTER_re2_VERSION}"
+        ]
+      },
+      {
+        "name": "c-ares",
+        "urls": [],
+        "versions": [
+          "${HUNTER_c-ares_VERSION}"
+        ]
+      },
+      {
+        "name": "ZLIB",
+        "urls": [],
+        "versions": [
+          "${HUNTER_ZLIB_VERSION}"
+        ]
+      },
+      {
+        "name": "koinos_log",
+        "urls": [
+          "https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_util",
+        "urls": [
+          "https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_proto",
+        "urls": [
+          "https://github.com/koinos/koinos-proto-cpp/archive/v2.5.0.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_exception",
+        "urls": [
+          "https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_crypto",
+        "urls": [
+          "https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_mq",
+        "urls": [
+          "https://github.com/koinos/koinos-mq-cpp/archive/v1.0.3.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_state_db",
+        "urls": [
+          "https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.2.tar.gz"
+        ],
+        "versions": []
+      }
+    ]
+  },
+  {
+    "tag": "v1.0.9",
+    "commit": "12cc060400781497140ad549a094f2d0680503e0",
+    "files": {
+      "Koinos.cmake": "list(APPEND CMAKE_MODULE_PATH \"${CMAKE_CURRENT_LIST_DIR}\")\n\noption(STATIC_ANALYSIS \"Run static analysis during build\" OFF)\noption(FORCE_COLORED_OUTPUT \"Always produce ANSI-colored output (GNU/Clang only)\" OFF)\noption(HUNTER_RUN_UPLOAD \"Upload Hunter packages to binary cache server\" OFF)\noption(COVERAGE \"Run code coverage\" OFF)\noption(BUILD_TESTING \"Build tests\" ON)\noption(BUILD_EXAMPLES \"Build examples\" ON)\n\nset(SANITIZER \"None\" CACHE STRING \"Sanitizer build type, options are: None Address Stack Thread\")\nset_property(CACHE SANITIZER PROPERTY STRINGS None Address Stack Thread)\n\nset(HUNTER_CACHE_SERVERS \"https://github.com/koinos/hunter-cache\"\n  CACHE STRING \"Koinos Hunter cache server\")\n\nset(HUNTER_PASSWORDS_PATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/passwords.cmake\"\n  CACHE FILEPATH \"Koinos Hunter passwords\")\n\ninclude(HunterGate)\n\nHunterGate(\n  URL \"https://github.com/cpp-pm/hunter/archive/v0.25.5.tar.gz\"\n  SHA1 \"a20151e4c0740ee7d0f9994476856d813cdead29\"\n  FILEPATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/config.cmake\"\n)\n\ninclude(KoinosCompilerOptions)\ninclude(KoinosStaticAnalysis)\ninclude(KoinosCoverage)\ninclude(KoinosUnitTests)\ninclude(KoinosFormat)\ninclude(KoinosAddPackage)\ninclude(KoinosVersion)\ninclude(KoinosGenerator)\ninclude(KoinosGit)\ninclude(KoinosInstall)\n\nkoinos_add_git_target()\n",
+      "Hunter/config.cmake": "hunter_config(Boost\n   URL  \"https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.bz2\"\n   SHA1 \"75b1f569134401d178ad2aaf97a2993898dd7ee3\"\n   CMAKE_ARGS\n      USE_CONFIG_FROM_BOOST=ON\n      Boost_USE_STATIC_LIBS=ON\n      Boost_NO_BOOST_CMAKE=ON\n)\n\nhunter_config(Protobuf\n   URL  \"https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz\"\n   SHA1 \"5796707a98eec15ffb3ad86ff50e8eec5fa65e68\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(rocksdb\n   URL \"https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz\"\n   SHA1 \"ef3e82eb750013c9fec5220911213609613776d7\"\n   CMAKE_ARGS\n      WITH_TESTS=OFF\n      WITH_TOOLS=OFF\n      WITH_JNI=OFF\n      WITH_BENCHMARK_TOOLS=OFF\n      WITH_CORE_TOOLS=OFF\n      WITH_GFLAGS=OFF\n      WITH_LIBURING=OFF\n      PORTABLE=ON\n      FAIL_ON_WARNINGS=OFF\n      ROCKSDB_BUILD_SHARED=OFF\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(fizzy\n   URL \"https://github.com/koinos/fizzy/archive/b9bf7feaa8009a3d4f4bdd49245a5cd55d122055.tar.gz\"\n   SHA1 \"d4e682dca504a831b30274fbec0b154b8b7adfd1\"\n)\n\nhunter_config(rabbitmq-c\n   URL \"https://github.com/alanxz/rabbitmq-c/archive/84b81cd97a1b5515d3d4b304796680da24c666d8.tar.gz\"\n   SHA1 \"2382d9bfe04894429b57f0c5a1b54fc1135ea80f\"\n   CMAKE_ARGS\n      ENABLE_SSL_SUPPORT=OFF\n)\n\nhunter_config(libsecp256k1\n   URL \"https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz\"\n   SHA1 \"0534fa8948f279b26fd102905215a56f0ad7fa18\"\n)\n\nhunter_config(libsecp256k1-vrf\n   URL \"https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz\"\n   SHA1 \"62df75e061c4afd6f0548f1e8267cc3da6abee15\"\n)\n\nhunter_config(yaml-cpp\n   VERSION \"0.6.3\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(ethash\n   URL \"https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz\"\n   SHA1 \"e8dabf60ce215b6763191ffd0ac835b89b7de5e0\"\n   CMAKE_ARGS\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\n\nhunter_config(gRPC\n   VERSION 1.31.0-p0\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(abseil\n   VERSION ${HUNTER_abseil_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(re2\n   VERSION ${HUNTER_re2_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(c-ares\n   VERSION ${HUNTER_c-ares_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(ZLIB\n   VERSION ${HUNTER_ZLIB_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/log\")\n   hunter_config(koinos_log\n      GIT_SUBMODULE \"external/log\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_log\n      URL  \"https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz\"\n      SHA1 \"44505fceff05bddb374f15fe328b6681147513d8\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/util\")\n   hunter_config(koinos_util\n      GIT_SUBMODULE \"external/util\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_util\n      URL  \"https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"06e08703417187e689e16bd36e74ac564e2b6366\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/proto\")\n   hunter_config(koinos_proto\n      GIT_SUBMODULE \"external/proto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_proto\n      URL  \"https://github.com/koinos/koinos-proto-cpp/archive/v2.6.0.tar.gz\"\n      SHA1 \"1c83a0f32089775b489d7846de6efefe5095da14\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/exception\")\n   hunter_config(koinos_exception\n      GIT_SUBMODULE \"external/exception\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_exception\n      URL  \"https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"e7cf9e149268ee78b1b0c342eccd40ce9354a3ad\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/crypto\")\n   hunter_config(koinos_crypto\n      GIT_SUBMODULE \"external/crypto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_crypto\n      URL  \"https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"3b459f321d106e587dc94b13b7f5be230395e183\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/mq\")\n   hunter_config(koinos_mq\n      GIT_SUBMODULE \"external/mq\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_mq\n      URL  \"https://github.com/koinos/koinos-mq-cpp/archive/v1.0.4.tar.gz\"\n      SHA1 \"7db35a75a949f45ee44c0820ff309cdff5191866\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/state_db\")\n   hunter_config(koinos_state_db\n      GIT_SUBMODULE \"external/state_db\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_state_db\n      URL  \"https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.2.tar.gz\"\n      SHA1 \"2c865d9256e639a2cd8227c04dff7483bd9558d3\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n",
+      "KoinosCompilerOptions.cmake": "set(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\nset(CMAKE_CXX_EXTENSIONS OFF)\nset(CMAKE_CXX_VISIBILITY_PRESET hidden)\nset(Boost_NO_BOOST_CMAKE ON)\n\n# This is to force color output when using ccache with Unix Makefiles\nif (FORCE_COLORED_OUTPUT)\n  if (CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" )\n    add_compile_options(-fdiagnostics-color=always)\n  elseif(CMAKE_CXX_COMPILER_ID STREQUAL \"Clang\" OR CMAKE_CXX_COMPILER_ID STREQUAL \"AppleClang\" )\n    add_compile_options(-fcolor-diagnostics)\n  endif()\nendif()\n\nif (MSVC)\n  # warning level 4 and all warnings as errors\n  add_compile_options(/W4 /WX)\nelse()\n  # lots of warnings and all warnings as errors\n  add_compile_options(-Werror -Wno-unknown-pragmas)\nendif()\n\nif (SANITIZER MATCHES \"Address\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\n  add_link_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\nelseif(SANITIZER MATCHES \"Stack\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=safe-stack)\n  add_link_options(\n    -fsanitize=safe-stack)\nelseif(SANITIZER MATCHES \"Thread\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=thread)\n  add_link_options(\n    -fsanitize=thread)\nelseif(NOT SANITIZER MATCHES \"None\")\n  message(FATAL_ERROR \"Unknown value for option SANITIZER: '${SANITIZER}'. Must be None, Address, Stack, or Thread.\")\nendif()\n"
+    },
+    "packages": [
+      {
+        "name": "Boost",
+        "urls": [
+          "https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.bz2"
+        ],
+        "versions": []
+      },
+      {
+        "name": "Protobuf",
+        "urls": [
+          "https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rocksdb",
+        "urls": [
+          "https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "fizzy",
+        "urls": [
+          "https://github.com/koinos/fizzy/archive/b9bf7feaa8009a3d4f4bdd49245a5cd55d122055.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rabbitmq-c",
+        "urls": [
+          "https://github.com/alanxz/rabbitmq-c/archive/84b81cd97a1b5515d3d4b304796680da24c666d8.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1",
+        "urls": [
+          "https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1-vrf",
+        "urls": [
+          "https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "yaml-cpp",
+        "urls": [],
+        "versions": [
+          "\"0.6.3\""
+        ]
+      },
+      {
+        "name": "ethash",
+        "urls": [
+          "https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "gRPC",
+        "urls": [],
+        "versions": [
+          "1.31.0-p0"
+        ]
+      },
+      {
+        "name": "abseil",
+        "urls": [],
+        "versions": [
+          "${HUNTER_abseil_VERSION}"
+        ]
+      },
+      {
+        "name": "re2",
+        "urls": [],
+        "versions": [
+          "${HUNTER_re2_VERSION}"
+        ]
+      },
+      {
+        "name": "c-ares",
+        "urls": [],
+        "versions": [
+          "${HUNTER_c-ares_VERSION}"
+        ]
+      },
+      {
+        "name": "ZLIB",
+        "urls": [],
+        "versions": [
+          "${HUNTER_ZLIB_VERSION}"
+        ]
+      },
+      {
+        "name": "koinos_log",
+        "urls": [
+          "https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_util",
+        "urls": [
+          "https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_proto",
+        "urls": [
+          "https://github.com/koinos/koinos-proto-cpp/archive/v2.6.0.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_exception",
+        "urls": [
+          "https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_crypto",
+        "urls": [
+          "https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_mq",
+        "urls": [
+          "https://github.com/koinos/koinos-mq-cpp/archive/v1.0.4.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_state_db",
+        "urls": [
+          "https://github.com/koinos/koinos-state-db-cpp/archive/v1.1.2.tar.gz"
+        ],
+        "versions": []
+      }
+    ]
+  },
+  {
+    "tag": "v1.0.10",
+    "commit": "ab8368bd317db4da2e819d182c69deb0b8f7c27a",
+    "files": {
+      "Koinos.cmake": "list(APPEND CMAKE_MODULE_PATH \"${CMAKE_CURRENT_LIST_DIR}\")\n\noption(STATIC_ANALYSIS \"Run static analysis during build\" OFF)\noption(FORCE_COLORED_OUTPUT \"Always produce ANSI-colored output (GNU/Clang only)\" OFF)\noption(HUNTER_RUN_UPLOAD \"Upload Hunter packages to binary cache server\" OFF)\noption(COVERAGE \"Run code coverage\" OFF)\noption(BUILD_TESTING \"Build tests\" ON)\noption(BUILD_EXAMPLES \"Build examples\" ON)\n\nset(SANITIZER \"None\" CACHE STRING \"Sanitizer build type, options are: None Address Stack Thread\")\nset_property(CACHE SANITIZER PROPERTY STRINGS None Address Stack Thread)\n\nset(HUNTER_CACHE_SERVERS \"https://github.com/koinos/hunter-cache\"\n  CACHE STRING \"Koinos Hunter cache server\")\n\nset(HUNTER_PASSWORDS_PATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/passwords.cmake\"\n  CACHE FILEPATH \"Koinos Hunter passwords\")\n\ninclude(HunterGate)\n\nHunterGate(\n  URL \"https://github.com/cpp-pm/hunter/archive/v0.25.5.tar.gz\"\n  SHA1 \"a20151e4c0740ee7d0f9994476856d813cdead29\"\n  FILEPATH \"${CMAKE_CURRENT_LIST_DIR}/Hunter/config.cmake\"\n)\n\ninclude(KoinosCompilerOptions)\ninclude(KoinosStaticAnalysis)\ninclude(KoinosCoverage)\ninclude(KoinosUnitTests)\ninclude(KoinosFormat)\ninclude(KoinosAddPackage)\ninclude(KoinosVersion)\ninclude(KoinosGenerator)\ninclude(KoinosGit)\ninclude(KoinosInstall)\n\nkoinos_add_git_target()\n",
+      "Hunter/config.cmake": "hunter_config(Boost\n   URL  \"https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.bz2\"\n   SHA1 \"75b1f569134401d178ad2aaf97a2993898dd7ee3\"\n   CMAKE_ARGS\n      USE_CONFIG_FROM_BOOST=ON\n      Boost_USE_STATIC_LIBS=ON\n      Boost_NO_BOOST_CMAKE=ON\n)\n\nhunter_config(Protobuf\n   URL  \"https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz\"\n   SHA1 \"5796707a98eec15ffb3ad86ff50e8eec5fa65e68\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(rocksdb\n   URL \"https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz\"\n   SHA1 \"ef3e82eb750013c9fec5220911213609613776d7\"\n   CMAKE_ARGS\n      WITH_TESTS=OFF\n      WITH_TOOLS=OFF\n      WITH_JNI=OFF\n      WITH_BENCHMARK_TOOLS=OFF\n      WITH_CORE_TOOLS=OFF\n      WITH_GFLAGS=OFF\n      WITH_LIBURING=OFF\n      PORTABLE=ON\n      FAIL_ON_WARNINGS=OFF\n      ROCKSDB_BUILD_SHARED=OFF\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(fizzy\n   URL \"https://github.com/koinos/fizzy/archive/b9bf7feaa8009a3d4f4bdd49245a5cd55d122055.tar.gz\"\n   SHA1 \"d4e682dca504a831b30274fbec0b154b8b7adfd1\"\n)\n\nhunter_config(rabbitmq-c\n   URL \"https://github.com/alanxz/rabbitmq-c/archive/84b81cd97a1b5515d3d4b304796680da24c666d8.tar.gz\"\n   SHA1 \"2382d9bfe04894429b57f0c5a1b54fc1135ea80f\"\n   CMAKE_ARGS\n      ENABLE_SSL_SUPPORT=OFF\n)\n\nhunter_config(libsecp256k1\n   URL \"https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz\"\n   SHA1 \"0534fa8948f279b26fd102905215a56f0ad7fa18\"\n)\n\nhunter_config(libsecp256k1-vrf\n   URL \"https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz\"\n   SHA1 \"62df75e061c4afd6f0548f1e8267cc3da6abee15\"\n)\n\nhunter_config(yaml-cpp\n   VERSION \"0.6.3\"\n   CMAKE_ARGS\n      CMAKE_CXX_FLAGS=-fvisibility=hidden\n      CMAKE_C_FLAGS=-fvisibility=hidden\n)\n\nhunter_config(ethash\n   URL \"https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz\"\n   SHA1 \"e8dabf60ce215b6763191ffd0ac835b89b7de5e0\"\n   CMAKE_ARGS\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\n\nhunter_config(gRPC\n   VERSION 1.31.0-p0\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(abseil\n   VERSION ${HUNTER_abseil_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(re2\n   VERSION ${HUNTER_re2_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(c-ares\n   VERSION ${HUNTER_c-ares_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nhunter_config(ZLIB\n   VERSION ${HUNTER_ZLIB_VERSION}\n   CMAKE_ARGS\n      CMAKE_POSITION_INDEPENDENT_CODE=ON\n      CMAKE_CXX_STANDARD=20\n      CMAKE_CXX_STANDARD_REQUIRED=ON\n)\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/log\")\n   hunter_config(koinos_log\n      GIT_SUBMODULE \"external/log\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_log\n      URL  \"https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz\"\n      SHA1 \"44505fceff05bddb374f15fe328b6681147513d8\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/util\")\n   hunter_config(koinos_util\n      GIT_SUBMODULE \"external/util\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_util\n      URL  \"https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"06e08703417187e689e16bd36e74ac564e2b6366\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/proto\")\n   hunter_config(koinos_proto\n      GIT_SUBMODULE \"external/proto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_proto\n      URL  \"https://github.com/koinos/koinos-proto-cpp/archive/v2.6.0.tar.gz\"\n      SHA1 \"1c83a0f32089775b489d7846de6efefe5095da14\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/exception\")\n   hunter_config(koinos_exception\n      GIT_SUBMODULE \"external/exception\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_exception\n      URL  \"https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"e7cf9e149268ee78b1b0c342eccd40ce9354a3ad\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/crypto\")\n   hunter_config(koinos_crypto\n      GIT_SUBMODULE \"external/crypto\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_crypto\n      URL  \"https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz\"\n      SHA1 \"3b459f321d106e587dc94b13b7f5be230395e183\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/mq\")\n   hunter_config(koinos_mq\n      GIT_SUBMODULE \"external/mq\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_mq\n      URL  \"https://github.com/koinos/koinos-mq-cpp/archive/v1.0.4.tar.gz\"\n      SHA1 \"7db35a75a949f45ee44c0820ff309cdff5191866\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n\nif (EXISTS \"${CMAKE_SOURCE_DIR}/external/state_db\")\n   hunter_config(koinos_state_db\n      GIT_SUBMODULE \"external/state_db\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nelse()\n   hunter_config(koinos_state_db\n      URL  \"https://github.com/koinos/koinos-state-db-cpp/archive/v1.2.1.tar.gz\"\n      SHA1 \"001dbf9a8c62397e31ca2a8b6b98d04da62c0f3b\"\n      CMAKE_ARGS\n         BUILD_TESTING=OFF\n         BUILD_EXAMPLES=OFF\n   )\nendif()\n",
+      "KoinosCompilerOptions.cmake": "set(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\nset(CMAKE_CXX_EXTENSIONS OFF)\nset(CMAKE_CXX_VISIBILITY_PRESET hidden)\nset(Boost_NO_BOOST_CMAKE ON)\n\n# This is to force color output when using ccache with Unix Makefiles\nif (FORCE_COLORED_OUTPUT)\n  if (CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" )\n    add_compile_options(-fdiagnostics-color=always)\n  elseif(CMAKE_CXX_COMPILER_ID STREQUAL \"Clang\" OR CMAKE_CXX_COMPILER_ID STREQUAL \"AppleClang\" )\n    add_compile_options(-fcolor-diagnostics)\n  endif()\nendif()\n\nif (MSVC)\n  # warning level 4 and all warnings as errors\n  add_compile_options(/W4 /WX)\nelse()\n  # lots of warnings and all warnings as errors\n  add_compile_options(-Werror -Wno-unknown-pragmas)\nendif()\n\nif (SANITIZER MATCHES \"Address\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\n  add_link_options(\n    -fsanitize=address\n    -fsanitize=undefined\n    -fno-sanitize-recover=all)\nelseif(SANITIZER MATCHES \"Stack\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=safe-stack)\n  add_link_options(\n    -fsanitize=safe-stack)\nelseif(SANITIZER MATCHES \"Thread\")\n  message(STATUS \"Sanitizer configuration type: ${SANITIZER}\")\n  add_compile_options(\n    -fsanitize=thread)\n  add_link_options(\n    -fsanitize=thread)\nelseif(NOT SANITIZER MATCHES \"None\")\n  message(FATAL_ERROR \"Unknown value for option SANITIZER: '${SANITIZER}'. Must be None, Address, Stack, or Thread.\")\nendif()\n"
+    },
+    "packages": [
+      {
+        "name": "Boost",
+        "urls": [
+          "https://archives.boost.io/release/1.83.0/source/boost_1_83_0.tar.bz2"
+        ],
+        "versions": []
+      },
+      {
+        "name": "Protobuf",
+        "urls": [
+          "https://github.com/koinos/protobuf/archive/e1b1477875a8b022903b548eb144f2c7bf4d9561.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rocksdb",
+        "urls": [
+          "https://github.com/facebook/rocksdb/archive/v8.8.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "fizzy",
+        "urls": [
+          "https://github.com/koinos/fizzy/archive/b9bf7feaa8009a3d4f4bdd49245a5cd55d122055.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "rabbitmq-c",
+        "urls": [
+          "https://github.com/alanxz/rabbitmq-c/archive/84b81cd97a1b5515d3d4b304796680da24c666d8.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1",
+        "urls": [
+          "https://github.com/soramitsu/soramitsu-libsecp256k1/archive/c7630e1bac638c0f16ee66d4dce7b5c49eecbaa5.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "libsecp256k1-vrf",
+        "urls": [
+          "https://github.com/koinos/secp256k1-vrf/archive/db479e83be5685f652a9bafefaef77246fdf3bbe.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "yaml-cpp",
+        "urls": [],
+        "versions": [
+          "\"0.6.3\""
+        ]
+      },
+      {
+        "name": "ethash",
+        "urls": [
+          "https://github.com/chfast/ethash/archive/refs/tags/v1.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "gRPC",
+        "urls": [],
+        "versions": [
+          "1.31.0-p0"
+        ]
+      },
+      {
+        "name": "abseil",
+        "urls": [],
+        "versions": [
+          "${HUNTER_abseil_VERSION}"
+        ]
+      },
+      {
+        "name": "re2",
+        "urls": [],
+        "versions": [
+          "${HUNTER_re2_VERSION}"
+        ]
+      },
+      {
+        "name": "c-ares",
+        "urls": [],
+        "versions": [
+          "${HUNTER_c-ares_VERSION}"
+        ]
+      },
+      {
+        "name": "ZLIB",
+        "urls": [],
+        "versions": [
+          "${HUNTER_ZLIB_VERSION}"
+        ]
+      },
+      {
+        "name": "koinos_log",
+        "urls": [
+          "https://github.com/koinos/koinos-log-cpp/archive/v2.0.1.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_util",
+        "urls": [
+          "https://github.com/koinos/koinos-util-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_proto",
+        "urls": [
+          "https://github.com/koinos/koinos-proto-cpp/archive/v2.6.0.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_exception",
+        "urls": [
+          "https://github.com/koinos/koinos-exception-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_crypto",
+        "urls": [
+          "https://github.com/koinos/koinos-crypto-cpp/archive/v1.0.2.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_mq",
+        "urls": [
+          "https://github.com/koinos/koinos-mq-cpp/archive/v1.0.4.tar.gz"
+        ],
+        "versions": []
+      },
+      {
+        "name": "koinos_state_db",
+        "urls": [
+          "https://github.com/koinos/koinos-state-db-cpp/archive/v1.2.1.tar.gz"
+        ],
+        "versions": []
+      }
+    ]
+  }
+]

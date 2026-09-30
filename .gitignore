@@ -1,0 +1,9 @@
+# Public reference clones are independently versioned repositories.
+upstream/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local references and analysis involving private projects.
+LOCAL_REFERENCES.md
+docs/comparisons/

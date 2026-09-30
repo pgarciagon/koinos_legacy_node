@@ -1,0 +1,522 @@
+{
+  "configs": {
+    "amqp-config": {
+      "name": "koinos_amqp-config",
+      "file": "./config/rabbitmq.conf"
+    },
+    "genesis-data": {
+      "name": "koinos_genesis-data",
+      "file": "./config/genesis_data.json"
+    },
+    "koinos-config": {
+      "name": "koinos_koinos-config",
+      "file": "./config/config.yml"
+    },
+    "koinos-descriptors": {
+      "name": "koinos_koinos-descriptors",
+      "file": "./config/koinos_descriptors.pb"
+    }
+  },
+  "name": "koinos",
+  "networks": {
+    "default": {
+      "name": "koinos_default",
+      "ipam": {}
+    }
+  },
+  "services": {
+    "account_history": {
+      "profiles": [
+        "account_history",
+        "api",
+        "all"
+      ],
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "block_store": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-account-history:v1.1.0",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "amqp": {
+      "command": null,
+      "configs": [
+        {
+          "source": "amqp-config",
+          "target": "/etc/rabbitmq/rabbitmq.conf"
+        }
+      ],
+      "entrypoint": null,
+      "image": "rabbitmq:3-management",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 5672,
+          "published": "5672",
+          "protocol": "tcp"
+        },
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 15672,
+          "published": "15672",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "./config/rabbitmq.conf",
+          "target": "/etc/rabbitmq/rabbitmq.conf",
+          "bind": {}
+        }
+      ]
+    },
+    "block_producer": {
+      "profiles": [
+        "block_producer",
+        "all"
+      ],
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        },
+        "mempool": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-block-producer:v1.3.1",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "block_store": {
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-block-store:v1.1.0",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "chain": {
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        },
+        {
+          "source": "genesis-data",
+          "target": "/koinos/chain/genesis_data.json"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-chain:v1.5.2",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "contract_meta_store": {
+      "profiles": [
+        "contract_meta_store",
+        "api",
+        "all"
+      ],
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-contract-meta-store:v1.1.0",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "grpc": {
+      "profiles": [
+        "grpc",
+        "api",
+        "all"
+      ],
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-grpc:v1.1.1",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 50051,
+          "published": "50051",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "jsonrpc": {
+      "profiles": [
+        "jsonrpc",
+        "api",
+        "all"
+      ],
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        },
+        {
+          "source": "koinos-descriptors",
+          "target": "/koinos/jsonrpc/descriptors/koinos_descriptors.pb"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-jsonrpc:v1.2.0",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 8080,
+          "published": "8080",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "mempool": {
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-mempool:v1.5.0",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "p2p": {
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "block_store": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-p2p:v1.3.0",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "0.0.0.0",
+          "target": 8888,
+          "published": "8888",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    },
+    "rest": {
+      "profiles": [
+        "rest",
+        "api",
+        "all"
+      ],
+      "command": null,
+      "depends_on": {
+        "jsonrpc": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "JSONRPC_URL": "http://jsonrpc:8080/"
+      },
+      "image": "koinos/koinos-rest:v1.1.1",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 3000,
+          "published": "3000",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "always"
+    },
+    "transaction_store": {
+      "profiles": [
+        "transaction_store",
+        "api",
+        "all"
+      ],
+      "command": [
+        "--basedir=/koinos"
+      ],
+      "configs": [
+        {
+          "source": "koinos-config",
+          "target": "/koinos/config.yml"
+        }
+      ],
+      "depends_on": {
+        "amqp": {
+          "condition": "service_started",
+          "required": true
+        },
+        "chain": {
+          "condition": "service_started",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "image": "koinos/koinos-transaction-store:v1.1.0",
+      "networks": {
+        "default": null
+      },
+      "restart": "always",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "~/.koinos",
+          "target": "/koinos",
+          "bind": {}
+        }
+      ]
+    }
+  }
+}
