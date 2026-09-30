@@ -1,40 +1,42 @@
-# Coordinación del nodo Koinos
+# Koinos node coordination
 
-[Repositorio público](https://github.com/pgarciagon/koinos_legacy_node)
+[Public repository](https://github.com/pgarciagon/koinos_legacy_node)
 
-## Objetivo
+## Purpose
 
-Este proyecto sirve como coordinador de las mejoras y actualizaciones del software base necesario para ejecutar nodos productores en Koinos.
+This project coordinates improvements and updates to the base software required to run Koinos producer nodes.
 
-Centraliza el análisis, las propuestas, las decisiones y el seguimiento de cambios que puedan afectar a varios repositorios del nodo. El punto de partida es el conjunto de servicios que se lanza mediante Docker.
+It centralizes analysis, proposals, decisions and change tracking across the node repositories. The starting point is the set of services launched through Docker.
 
-## Referencias principales
+## Main references
 
-- [Organización pública Koinos](https://github.com/koinos): reúne los repositorios del ecosistema; no es un único repositorio de código.
-- [koinos/koinos](https://github.com/koinos/koinos): repositorio integrador para lanzar los servicios de Koinos mediante Docker.
+- [Koinos public organization](https://github.com/koinos): hosts the ecosystem repositories; it is not a single code repository.
+- [koinos/koinos](https://github.com/koinos/koinos): the integration repository for launching Koinos services through Docker.
 
-## Documentación de funcionamiento
+## Service documentation
 
-La [documentación pública de arquitectura de Koinos](https://github.com/koinos/koinos-docs/tree/master/docs/architecture) describe los microservicios y la comunicación interna. El [inventario de este proyecto](docs/inventory/2026-09-30-inventario.md) registra las versiones concretas revisadas.
+The [public Koinos architecture documentation](https://github.com/koinos/koinos-docs/tree/master/docs/architecture) describes the microservices and their internal communication. This project's [inventory](docs/inventory/2026-09-30-inventory.md) records the specific versions reviewed.
 
-El entorno local conserva referencias técnicas adicionales y una comparación con el proyecto privado Knodel en `LOCAL_REFERENCES.md` y `docs/comparisons/`. Estos archivos no forman parte del repositorio público.
+The local environment keeps additional technical references and a comparison with the private Knodel project in `LOCAL_REFERENCES.md` and `docs/comparisons/`. These files are excluded from the public repository.
 
-## Forma de trabajo
+## Workflow
 
-1. Identificar el problema o la actualización y los componentes afectados.
-2. Documentar el análisis y la propuesta antes de implementar.
-3. Realizar los cambios en los repositorios correspondientes y registrar aquí sus referencias.
-4. Verificar la compatibilidad entre componentes y el comportamiento del nodo con pruebas adecuadas al cambio.
-5. Registrar resultados, limitaciones y pasos necesarios para su adopción.
+All repository documentation is maintained in English.
 
-## Estado del proyecto
+1. Identify the problem or update and the affected components.
+2. Document the analysis and proposal before implementation.
+3. Make changes in the relevant repositories and record their references here.
+4. Verify component compatibility and node behavior with tests appropriate to the change.
+5. Record results, limitations and the steps required for adoption.
 
-Propósito establecido el 28 de septiembre de 2026. El 30 de septiembre se completó el [inventario de componentes, versiones y dependencias](docs/inventory/2026-09-30-inventario.md) del despliegue Docker, con evidencias de GitHub y Docker Hub.
+## Project status
 
-El análisis identifica 12 servicios y propone primeras mejoras de reproducibilidad, salud operativa, construcción y soporte ARM64. Recomienda como primera contribución acotada al integrador validar el conjunto de versiones y evitar la selección silenciosa de `latest`; destaca también una PR de memoria WASM en `chain` para revisión prioritaria.
+The project purpose was established on September 28, 2026. The Docker deployment's [component, version and dependency inventory](docs/inventory/2026-09-30-inventory.md) was completed on September 30, with evidence from GitHub and Docker Hub.
 
-Las mejoras están propuestas. La verificación realizada comprende código, metadatos de imágenes y resolución de Compose; todavía no se han ejecutado builds ni pruebas de un nodo. Los repositorios públicos de referencia se conservan en `upstream/`, excluido de Git.
+The analysis identifies 12 services and proposes initial improvements to reproducibility, operational health, builds and ARM64 support. It recommends validating the version set and preventing silent selection of `latest` as the first scoped contribution to the integration repository. It also identifies a WASM memory PR in `chain` for priority review.
 
-El arreglo de replay de estado [chain #861](https://github.com/koinos/koinos-chain/pull/861) ya está incluido en legacy chain `v1.5.2`. Las investigaciones sobre mejoras futuras se documentarán con fuentes públicas y una distinción explícita entre propuesta, implementación y validación.
+The improvements remain proposals. Verification covers source code, image metadata and Compose configuration resolution; no builds or node tests have been run yet. Public reference repositories are kept in `upstream/`, which is excluded from Git.
 
-Los extractos de fuentes y manifiestos upstream conservan sus licencias originales; véase [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The state replay fix in [chain #861](https://github.com/koinos/koinos-chain/pull/861) is already included in legacy chain `v1.5.2`. Research into future improvements will cite public sources and explicitly distinguish proposals, implementation and validation.
+
+Upstream source excerpts and manifests retain their original licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

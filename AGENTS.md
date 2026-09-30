@@ -1,22 +1,23 @@
-# Contexto del proyecto
+# Project context
 
-Leer `README.md` antes de iniciar trabajo en este directorio.
+Read `README.md` before starting work in this directory.
 
-Este proyecto coordina mejoras y actualizaciones del software base para ejecutar nodos productores de Koinos. Las referencias principales son la organización https://github.com/koinos y el repositorio integrador Docker https://github.com/koinos/koinos.
+This project coordinates improvements and updates to the base software for running Koinos producer nodes. The main references are the organization https://github.com/koinos and the Docker integration repository https://github.com/koinos/koinos.
 
-## Continuidad del trabajo
+## Work continuity
 
-- Mantener aquí el análisis, las decisiones y las referencias a cambios en los repositorios afectados.
-- Antes de modificar software, identificar el repositorio, la versión y las dependencias relevantes; comprobar su estado actual.
-- Documentar el análisis en Markdown antes de implementar una mejora.
-- Distinguir propuestas, implementaciones, pruebas y despliegues efectivos al comunicar el estado.
-- El propósito general del proyecto no constituye por sí solo una instrucción para desplegar cambios en nodos productores.
+- Write all repository documentation in English, including local notes maintained for this project.
+- Keep analysis, decisions and references to changes in the affected repositories here.
+- Before modifying software, identify the relevant repository, version and dependencies; check their current state.
+- Document the analysis in Markdown before implementing an improvement.
+- Distinguish proposals, implementations, tests and actual deployments when reporting status.
+- The project's general purpose does not itself authorize deploying changes to producer nodes.
 
-## Punto de continuación
+## Continuation point
 
-- Consultar las referencias públicas del README. Si existe `LOCAL_REFERENCES.md`, contiene referencias del entorno local excluidas de Git, incluyendo documentación adicional de Knodel.
-- Mantener fuera de la publicación los archivos locales y los análisis que dependan de información de proyectos privados. Al reutilizar documentación histórica, verificar opciones y datos contra la versión objetivo.
-- Inventario inicial: `docs/inventory/2026-09-30-inventario.md`; evidencias en `docs/inventory/evidence/`.
-- Los clones de `upstream/` son referencias públicas independientes. Leer sus instrucciones propias antes de modificar software allí.
-- El inventario propone validar versiones y evitar el fallback silencioso a `latest` como primera contribución acotada al integrador; la PR chain #862 merece investigación prioritaria. Ambas siguen pendientes de implementación o validación en este proyecto.
-- Para cualquier actualización, distinguir tags Git, releases, digests Docker y versiones de un nodo efectivamente instalado. Refrescar datos públicos antes de seleccionar artefactos.
+- Consult the public references in the README. If present, `LOCAL_REFERENCES.md` contains local environment references excluded from Git, including additional Knodel documentation.
+- Keep local files and analysis that depends on private project information out of publication. When reusing historical documentation, verify options and data against the target version.
+- Initial inventory: `docs/inventory/2026-09-30-inventory.md`; evidence in `docs/inventory/evidence/`.
+- The clones in `upstream/` are independent public references. Read their own instructions before modifying software there.
+- The inventory proposes validating versions and preventing silent fallback to `latest` as the first scoped contribution to the integration repository; chain PR #862 deserves priority investigation. Both remain pending implementation or validation in this project.
+- For any update, distinguish Git tags, releases, Docker digests and versions actually installed on a node. Refresh public data before selecting artifacts.
